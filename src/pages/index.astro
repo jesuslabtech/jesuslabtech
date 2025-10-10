@@ -1,16 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '@components/Header.astro';
-import Hero from '@components/Hero.astro';
+import Header from '@/components/Header.astro';
+import Hero from '@/components/Hero.astro';
+import Experience from '@/components/Experience.astro';
 ---
 
 <Layout>
 	<Header />
 	<Hero />
-	<div class="min-h-screen flex items-center justify-center">
-		<h1 class="text-4xl font-bold">Welcome to My Portfolio</h1>
+	<section id="experience">
+		<Experience />
+	</section>
 
-	</div>
 	<section id="contact" class="flex items-center justify-center">
 		<h2 class="text-3xl font-bold">Contact Me</h2>
 	</section>
