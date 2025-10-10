@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Hero from '@/components/Hero.astro';
 import Experience from '@/components/Experience.astro';
+import Projects from '@/components/Projects.astro';
 ---
 
 <Layout>
@@ -11,11 +12,14 @@ import Experience from '@/components/Experience.astro';
 	<section id="experience">
 		<Experience />
 	</section>
+	<section id="projects">
+		<Projects />
+	</section>
 
 	<section id="contact" class="flex items-center justify-center">
 		<h2 class="text-3xl font-bold">Contact Me</h2>
 	</section>
-	<footer class="mt-[1000px] w-full py-6 text-center text-sm text-muted-foreground">
+	<footer class="mt-72 w-full py-6 text-center text-sm text-muted-foreground">
 		<p>© 2024 Jesús Merlo. All rights reserved.</p>
 	</footer>
 </Layout>
