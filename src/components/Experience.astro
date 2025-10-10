@@ -1,0 +1,93 @@
+---
+
+import { Briefcase, Calendar } from "@lucide/astro";
+import Card from "@/components/ui/Card.astro";
+import Badge from "@/components/ui/Badge.astro";
+
+const experiences = [
+  {
+    title: "Junior DevOps Engineer",
+    company: "Crononauta S.L",
+    period: "Noviembre 2024 - Octubre 2025",
+    location: "Remoto",
+    description:
+      "Desarrollo y mantenimiento de infraestructura cloud en AWS, implementación de pipelines CI/CD y automatización de procesos de despliegue.",
+    achievements: [
+      "Migración de la infraestructura interna de monitorización a otra VPC sin caída del servicio",
+      "Reducción del tiempo de despliegue en un 60% mediante automatización con Jenkins y Docker",
+      "Implementación de monitoreo con Prometheus y Grafana para 15+ microservicios",
+      "Gestión de infraestructura IaC usando Terraform para entornos de desarrollo y producción",
+    ],
+    technologies: ["AWS", "Prometheus", "Linux", "Puppeteer", "Terraform"],
+  },
+
+];
+
+---
+
+
+<div class="max-w-[80%] mx-auto my-0 py-20">
+  <!-- Título -->
+  <div class="text-center mb-16">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">Experiencia Laboral</h2>
+    <p class="text-xl text-balance text-muted-[hsl(var(--foreground))] max-w-2xl mx-auto">
+      Trayectoria profesional en DevOps e infraestructura Cloud
+    </p>
+  </div>
+  <!-- Lista de experiencias -->
+  <div class="max-w-4xl mx-auto space-y-6">
+    {experiences.map((exp, index) => (
+      <Card
+        class="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm"
+        style={`animation-delay: ${index * 100}ms`}
+      >
+        
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+          <div class="flex items-start gap-3 mb-3 md:mb-0">
+            <div class="p-3 rounded-lg bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+              <Briefcase class="h-6 w-6" />
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold">{exp.title}</h3>
+              <p class="text-lg text-[hsl(var(--primary))] font-semibold">{exp.company}</p>
+              <p class="text-sm text-muted-[hsl(var(--foreground))]">{exp.location}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-muted-[hsl(var(--foreground))]">
+            <Calendar class="h-4 w-4" />
+            <span class="text-sm">{exp.period}</span>
+          </div>
+        </div>
+        
+        <p class="text-muted-[hsl(var(--foreground))] mb-4 leading-relaxed">
+          {exp.description}
+        </p>
+        
+        <div class="mb-4">
+          <h4 class="text-sm font-semibold mb-2 text-[hsl(var(--foreground))]">
+            Logros principales:
+          </h4>
+          <ul class="space-y-1">
+            {exp.achievements.map((achievement, idx) => (
+              <li class="text-sm text-muted-[hsl(var(--foreground))] flex items-start gap-2">
+                <span class="text-[hsl(var(--primary))] mt-1">•</span>
+                <span>{achievement}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <div class="flex flex-wrap gap-2">
+          {exp.technologies.map((tech, idx) => (
+            <Badge
+              variant={idx < 3 ? "accent" : "secondary"}
+              class={idx < 3 ? "bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent))]/90" : ""}
+            >
+              {tech}
+            </Badge>
+          ))}
+        </div>
+      </Card>
+    ))}
+  </div>
+</div>
