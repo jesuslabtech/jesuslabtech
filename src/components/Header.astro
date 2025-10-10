@@ -1,0 +1,137 @@
+---
+import { Menu, X } from "@lucide/astro";
+import Button from "@components/ui/Button.astro";
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
+  { label: "Inicio", href: "#" },
+  { label: "Experiencia", href: "#experience" },
+  { label: "Proyectos", href: "#projects" },
+  { label: "Sobre mí", href: "#about" },
+  { label: "Contacto", href: "#contact" },
+];
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+>
+  <div class="container mx-auto px-4">
+    <nav class="flex items-center justify-center h-16">
+      <!-- Logo -->
+      <!-- <button
+        id="logo-btn"
+        class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+      >
+        AR
+      </button> -->
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center justify-center gap-8">
+        {navItems.map((item) => (
+          <button
+            data-href={item.href}
+            class="nav-link text-foreground/80 hover:text-foreground transition-colors relative group"
+          >
+            {item.label}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+          </button>
+        ))}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <Button
+        variant="ghost"
+        size="icon"
+        class="md:hidden"
+        id="mobile-menu-btn"
+      >
+        <Menu class="h-5 w-5" id="menu-icon" />
+        <X class="h-5 w-5 hidden" id="close-icon" />
+      </Button>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div
+      id="mobile-menu"
+      class="hidden md:hidden pb-4 animate-in fade-in slide-in-from-top-2 duration-300"
+    >
+      {navItems.map((item) => (
+        <button
+          data-href={item.href}
+          class="nav-link block w-full text-left py-3 px-4 text-foreground/80 hover:text-foreground hover:bg-accent/10 transition-colors rounded-md"
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  </div>
+</header>
+
+<!-- Script para comportamiento dinámico -->
+<script>
+  const header = document.getElementById("site-header");
+  const menuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+  const logoBtn = document.getElementById("logo-btn");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  let isMobileMenuOpen = false;
+
+  // Scroll behavior
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      header?.classList.add("bg-background/80", "backdrop-blur-md", "shadow-sm", "border-b", "border-border/50");
+      header?.classList.remove("bg-transparent");
+    } else {
+      header?.classList.remove("bg-background/80", "backdrop-blur-md", "shadow-sm", "border-b", "border-border/50");
+      header?.classList.add("bg-transparent");
+    }
+  });
+
+  // Smooth scroll for logo and nav links
+  function scrollToSection(href?: string | undefined) {
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const element = document.querySelector(href!);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    closeMenu();
+  }
+
+  logoBtn?.addEventListener("click", () => scrollToSection("#"));
+  navLinks.forEach((link) => {
+    const href = link.getAttribute("data-href");
+    if (href) {
+      link.addEventListener("click", () => scrollToSection(href));
+    }
+  });
+
+  // Mobile menu toggle
+  menuBtn?.addEventListener("click", () => {
+    isMobileMenuOpen = !isMobileMenuOpen;
+    if (isMobileMenuOpen) {
+      mobileMenu?.classList.remove("hidden");
+      menuIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+    } else {
+      closeMenu();
+    }
+  });
+
+  function closeMenu() {
+    isMobileMenuOpen = false;
+    mobileMenu?.classList.add("hidden");
+    menuIcon?.classList.remove("hidden");
+    closeIcon?.classList.add("hidden");
+  }
+</script>
