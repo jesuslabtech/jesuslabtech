@@ -35,74 +35,69 @@ const projectsplaceholders: Project[] = [
             github: "#",
         },
     },
-
 ];
 ---
 
-<section class="py-24">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">Proyectos</h2>
-            <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Implementación DevOps del mundo real y proyectos en la
-                infraestructura de la nube
-            </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6">
-            {
-                projectsplaceholders.map((project, index) => (
-                    <Card
-                        key={project.title}
-                        class="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border/50"
-                        style={`animation-delay: ${index * 100}ms;`}
-                    >
-                        <h3 class="text-2xl font-bold mb-3">{project.title}</h3>
-                        <p class="text-muted-foreground mb-4 leading-relaxed">
-                            {project.description}
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            {project.tags.map((tag, idx) => (
-                                <Badge
-                                    key={tag}
-                                    variant={
-                                        idx === 0 ? "default" : "secondary"
-                                    }
-                                    class={
-                                        idx === 0
-                                            ? "bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent))]/90"
-                                            : ""
-                                    }
-                                >
-                                    {tag}
-                                </Badge>
-                            ))}
-                        </div>
-
-                        <div class="flex gap-3">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                class="gap-2"
-                                href={project.links.github}
-                            >
-                                <Github class="h-4 w-4" />
-                                Código
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                class="gap-2"
-                                href={project.links.demo}
-                            >
-                                <ExternalLink class="h-4 w-4" />
-                                Demo
-                            </Button>
-                        </div>
-                    </Card>
-                ))
-            }
-        </div>
+<div class="container mx-auto px-4 py-24">
+    <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Proyectos</h2>
+        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Implementación DevOps del mundo real y proyectos en la
+            infraestructura de la nube
+        </p>
     </div>
-</section>
+
+    <div class="grid md:grid-cols-2 gap-6">
+        {
+            projectsplaceholders.map((project, index) => (
+                <Card
+                    key={project.title}
+                    class="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border/50"
+                    style={`animation-delay: ${index * 100}ms;`}
+                >
+                    <h3 class="text-2xl font-bold mb-3">{project.title}</h3>
+                    <p class="text-muted-foreground mb-4 leading-relaxed">
+                        {project.description}
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        {project.tags.map((tag, idx) => (
+                            <Badge
+                                key={tag}
+                                variant={idx === 0 ? "default" : "secondary"}
+                                class={
+                                    idx === 0
+                                        ? "bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent))]/90"
+                                        : ""
+                                }
+                            >
+                                {tag}
+                            </Badge>
+                        ))}
+                    </div>
+
+                    <div class="flex gap-3">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            class="gap-2"
+                            href={project.links.github}
+                        >
+                            <Github class="h-4 w-4" />
+                            Código
+                        </Button>
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            class="gap-2"
+                            href={project.links.demo}
+                        >
+                            <ExternalLink class="h-4 w-4" />
+                            Demo
+                        </Button>
+                    </div>
+                </Card>
+            ))
+        }
+    </div>
+</div>
