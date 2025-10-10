@@ -1,0 +1,13 @@
+---
+interface CardProps extends astroHTML.JSX.HTMLAttributes {
+  class?: string;
+}
+
+const { class: className = "", ...props } = Astro.props as CardProps;
+
+const classes = `rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--card))] text-[hsl(var(--card-foreground))] shadow-sm ${className}`.trim();
+---
+
+<div class={classes} {...props}>
+  <slot />
+</div>
