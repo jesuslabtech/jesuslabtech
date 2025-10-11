@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Personal notes and ideas
 projects-ideas.json
+
+# Test posts
+src/content/*/*/TEST-*.md
