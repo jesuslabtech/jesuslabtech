@@ -21,14 +21,15 @@ const navItems: NavItem[] = [
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
 >
   <div class="container mx-auto px-4">
-    <nav class="flex items-center justify-center h-16">
+    <nav class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <!-- <button
+      <button
         id="logo-btn"
-        class="text-xl font-bold bg-gradient-to-r from-primary to-[hsl(var(--accent))] bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+        data-href="#"
+        class="text-xl font-bold bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] bg-clip-text text-transparent hover:cursor-pointer hover:opacity-80 transition-opacity"
       >
-        AR
-      </button> -->
+        JM
+      </button>
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center justify-center gap-8">
@@ -58,12 +59,12 @@ const navItems: NavItem[] = [
     <!-- Mobile Navigation -->
     <div
       id="mobile-menu"
-      class="hidden md:hidden pb-4 animate-in fade-in slide-in-from-top-2 duration-300"
+      class="hidden md:hidden pb-4 animate-in fade-in slide-in-from-top-2 duration-300 max-w-[50%] mr-0 ml-auto"
     >
       {navItems.map((item) => (
         <button
           data-href={item.href}
-          class="nav-link hover:cursor-pointer block w-full text-left py-3 px-4 text-[hsl(var(--foreground)/80)] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(var(--accent))]/10 transition-colors rounded-md"
+          class="nav-link hover:cursor-pointer block w-full text-center py-3 px-4 text-[hsl(var(--foreground)/80)] hover:text-[hsl(var(--foreground))] hover:bg-[hsl(var(--accent))]/10 transition-colors"
         >
           {item.label}
         </button>
