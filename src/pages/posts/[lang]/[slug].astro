@@ -7,7 +7,6 @@ export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post) => {
     const [lang, ...slugParts] = post.slug.split("/");
-    console.log(lang, slugParts.join("/"));
     return {
       params: { lang, slug: slugParts.join("/") },
       props: { post },
