@@ -1,13 +1,13 @@
 ---
 import Button from "@components/ui/Button.astro";
 import { Github, Linkedin, Mail, FileText } from "@lucide/astro";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-bg.webp";
 ---
 
 <section
     class="relative min-h-screen flex items-center justify-center overflow-hidden bg-background text-foreground"
 >
-    <!-- Imagen de fondo -->
+    
     <div class="absolute inset-0 z-0">
         <img
             src={heroBg.src}
@@ -16,14 +16,14 @@ import heroBg from "@/assets/hero-bg.jpg";
         />
     </div>
 
-    <!-- Capa de gradiente más intensa con desenfoque -->
+    
     <div
         class="absolute inset-0 z-10 bg-gradient-to-br from-background/80 via-background/70 to-primary/30 backdrop-blur-sm"
         
         >
     </div>
 
-    <!-- Contenido -->
+    
     <div
         class="relative container mx-auto px-6 z-20 text-center animate-in fade-in slide-in-from-bottom-4 duration-1000"
     >
