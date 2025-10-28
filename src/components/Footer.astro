@@ -1,0 +1,26 @@
+---
+import { Github, Linkedin, Mail, Heart } from "@lucide/astro";
+
+  const currentYear = new Date().getFullYear();
+
+  const socialLinks = [
+    {
+      icon: Github,
+      href: "https://github.com/jesuslabtech",
+      label: "GitHub",
+    },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com/in/JesusMerlo",
+      label: "LinkedIn",
+    },
+    {
+      icon: Mail,
+      href: "jesus.lab.tech@email.com",
+      label: "Email",
+    },
+  ];
+---
+<footer class="border-t-2 border-[hsl(var(--border))] mx-auto my-0 py-20 text-center text-sm text-muted-foreground">
+		<p class="prose dark:prose-invert">© 2025 - {currentYear} Jesús Merlo. Done with <Heart class="text-amber-500 fill-amber-500 inline-block h-4 w-4 mb-2" /></p>
+</footer>
