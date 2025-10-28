@@ -28,3 +28,6 @@ projects-ideas.json
 
 # Test posts
 src/content/*/*/TEST-*.md
+
+#TODO file
+TODO.md
