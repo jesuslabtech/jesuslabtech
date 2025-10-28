@@ -11,7 +11,7 @@ const navItems: NavItem[] = [
   { label: "Inicio", href: "#" },
   { label: "Experiencia", href: "#experience" },
   { label: "Proyectos", href: "#projects" },
-  { label: "Sobre mí", href: "#about" },
+  /* { label: "Sobre mí", href: "#about" }, */
   { label: "Contacto", href: "#contact" },
 ];
 ---
@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
 >
   <div class="container mx-auto px-4">
     <nav class="flex items-center justify-between h-16">
-      <!-- Logo -->
+      {/* Logo/Brand */}
       <button
         id="logo-btn"
         data-href="#"
@@ -31,7 +31,7 @@ const navItems: NavItem[] = [
         JM
       </button>
 
-      <!-- Desktop Navigation -->
+      {/*Desktop Navigation */}
       <div class="hidden md:flex items-center justify-center gap-8">
         {navItems.map((item) => (
           <button
@@ -44,7 +44,7 @@ const navItems: NavItem[] = [
         ))}
       </div>
 
-      <!-- Mobile Menu Button -->
+      {/* Mobile Menu Button */}
       <Button
         variant="ghost"
         size="icon"
@@ -56,10 +56,10 @@ const navItems: NavItem[] = [
       </Button>
     </nav>
 
-    <!-- Mobile Navigation -->
+    {/* Mobile Navigation */}
     <div
       id="mobile-menu"
-      class="hidden md:hidden pb-4 animate-in fade-in slide-in-from-top-2 duration-300 max-w-[50%] mr-0 ml-auto"
+      class="hidden md:hidden pb-4 animate-in fade-in slide-in-from-top-2 duration-300 max-w-[50%] items-center justify-center mx-auto"
     >
       {navItems.map((item) => (
         <button
@@ -73,8 +73,9 @@ const navItems: NavItem[] = [
   </div>
 </header>
 
-<!-- Script para comportamiento dinámico -->
+
 <script>
+  /* Script para comportamiento dinámico */
   const header = document.getElementById("site-header");
   const menuBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
