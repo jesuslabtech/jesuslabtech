@@ -1,0 +1,100 @@
+---
+import Card  from "@components/ui/Card.astro";
+import { Mail, Linkedin, Github, MapPin } from "@lucide/astro";
+---
+
+<div class="max-w-[80%] mx-auto my-0 py-20">
+    <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Contáctame</h2>
+        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Abierto a nuevas oportunidades y colaboraciones. ¡Hablemos!
+        </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+        <Card class="p-8 md:p-12">
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="p-3 rounded-lg bg-primary/10 text-primary"
+                        >
+                            <Mail class="h-6 w-6" />
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1">Email</h3>
+                            <a
+                                href="mailto:jesus.lab.tech@gmail.com"
+                                class="text-muted-foreground hover:text-[hsl(var(--primary))] hover:cursor-pointer transition-colors"
+                            >
+                                jesus.lab.tech@gmail.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="p-3 rounded-lg bg-primary/10 text-primary"
+                        >
+                            <MapPin class="h-6 w-6" />
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1">Localización</h3>
+                            <p class="text-muted-foreground">
+                                Andalucía, España
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="p-3 rounded-lg bg-accent/10 text-accent"
+                        >
+                            <Linkedin class="h-6 w-6" />
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1">LinkedIn</h3>
+                            <a
+                                href="https://linkedin.com/in/JesusMerlo"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-muted-foreground hover:text-[hsl(var(--primary))] hover:cursor-pointer transition-colors"
+                            >
+                                linkedin.com/in/JesusMerlo
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="p-3 rounded-lg bg-accent/10 text-accent"
+                        >
+                            <Github class="h-6 w-6" />
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-1">GitHub</h3>
+                            <a
+                                href="https://github.com/jesuslabtech/jesuslabtech"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-muted-foreground hover:text-[hsl(var(--primary))] hover:cursor-pointer transition-colors"
+                            >
+                                github.com/jesuslabtech
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center pt-6 border-t">
+                <p class="text-muted-foreground mb-6">
+                    No dudes en ponerte en contacto para oportunidades, colaboraciones o
+                    simplemente para charlar sobre DevOps.
+                </p>
+                
+            </div>
+        </Card>
+    </div>
+</div>
