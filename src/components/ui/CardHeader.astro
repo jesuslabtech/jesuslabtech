@@ -1,0 +1,12 @@
+---
+interface CardHeaderProps extends astroHTML.JSX.HTMLAttributes {
+  class?: string;
+}
+
+const { class: className = "", ...props } = Astro.props as CardHeaderProps;
+const classes = `flex flex-col space-y-1.5 p-6 ${className}`.trim();
+---
+
+<div class={classes} {...props}>
+  <slot />
+</div>

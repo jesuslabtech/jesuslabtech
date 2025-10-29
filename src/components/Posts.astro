@@ -1,0 +1,46 @@
+---
+import Card from "@components/ui/Card.astro";
+import { getCollection} from "astro:content"
+const posts = await getCollection('posts');
+
+const latestPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()).slice(0, 4);
+
+---
+
+
+<div class="max-w-[80%] mx-auto my-0 py-20">
+    <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Posts</h2>
+        <p class="text-xl text-balance text-muted-[hsl(var(--foreground))] max-w-2xl mx-auto mb-8">
+            Últimos artículos publicados
+        </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4 gap-6">
+        {latestPosts.map((post, idx) => (
+            <Card
+                class="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm flex flex-col"
+                style={`animation-delay: ${idx * 100}ms`}
+                key={post.id || post.slug}
+            >
+                <h3 transition:name={`${post.slug}-view-transition-title`} class="text-center text-2xl font-bold mb-4">{post.data.title}</h3>
+                {post.data.coverImage && (
+                    <a href={`/posts/${post.slug}`} class="cursor-pointer">
+                        <img
+                        transition:name={`${post.slug}-view-transition-img`}
+                        src={post.data.coverImage} 
+                        alt={post.data.title} 
+                        class="w-full h-48 object-cover mb-4 rounded-lg" 
+                    />
+                    </a>
+                    
+                )}
+                <p class="text-center text-muted-[hsl(var(--foreground))] mb-4">{post.data.description}</p>
+                <div class="flex-1"></div>
+                <div class="flex items-center justify-between mt-4">
+                    <small class="text-gray-500">{new Date(post.data.date).toLocaleDateString()}</small>
+                    <a href={`/posts/${post.slug}`} class="text-[hsl(var(--primary))] hover:underline font-medium">Leer más</a>
+                </div>
+            </Card>
+        ))}
+    </div>
+</div>

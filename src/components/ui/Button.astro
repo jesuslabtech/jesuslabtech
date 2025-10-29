@@ -1,0 +1,51 @@
+---
+interface ButtonProps extends astroHTML.JSX.HTMLAttributes {
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "accent";
+  size?: "default" | "sm" | "lg" | "icon";
+  href?: string;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  size = "default",
+  href,
+  class: extra = "",
+  ...props
+} = Astro.props as ButtonProps;
+
+const baseClasses =
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors " +
+  "hover:cursor-pointer hover:opacity-90 " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 " +
+  "disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0";
+
+const variants: Record<NonNullable<ButtonProps["variant"]>, string> = {
+  default: "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] hover:bg-[hsl(var(--primary)/0.9)]",
+  destructive: "bg-[hsl(var(--destructive))] text-[hsl(var(--destructive-foreground))] hover:bg-[hsl(var(--destructive)/0.9)]",
+  outline: "border border-[hsl(var(--input))] bg-[hsl(var(--background))] hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--background))]",
+  secondary: "bg-[hsl(var(--secondary))] text-[hsl(var(--secondary-foreground))] hover:bg-[hsl(var(--secondary)/0.8)]",
+  ghost: "hover:bg-[hsl(var(--accent)/0.15)] hover:text-[hsl(var(--accent-foreground))]",
+  link: "text-[hsl(var(--primary))] underline-offset-4 hover:underline",
+  accent: "bg-[hsl(var(--accent))] text-[hsl(var(--background))] hover:bg-[hsl(var(--accent)/0.9)]",
+};
+
+const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
+  default: "h-10 px-4 py-2",
+  sm: "h-9 rounded-md px-3",
+  lg: "h-11 rounded-md px-8",
+  icon: "h-10 w-10",
+};
+
+const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${extra}`;
+---
+
+{href ? (
+  <a href={href} class={classes} {...props}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} {...props}>
+    <slot />
+  </button>
+)}

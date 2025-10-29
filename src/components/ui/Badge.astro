@@ -1,0 +1,25 @@
+---
+interface BadgeProps extends astroHTML.JSX.HTMLAttributes {
+  variant?: "default" | "secondary" | "destructive" | "outline" | "accent";
+  class?: string;
+}
+
+const { variant = "default", class: className = "", ...props } = Astro.props as BadgeProps;
+
+const baseStyles =
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2";
+
+const variants: Record<NonNullable<BadgeProps["variant"]>, string> = {
+  default: "border-transparent bg-[hsl(var(--primary))] text-[hsl(var(--primary))]-[hsl(var(--foreground))] hover:bg-[hsl(var(--primary))]/80",
+  secondary: "border-transparent bg-[hsl(var(--secondary))] text-[hsl(var(--secondary))]-[hsl(var(--foreground))] hover:bg-[hsl(var(--secondary))]/80",
+  destructive: "border-transparent bg-[hsl(var(--destructive))] text-[hsl(var(--destructive))]-[hsl(var(--foreground))] hover:bg-[hsl(var(--destructive))]/80",
+  outline: "text-[hsl(var(--foreground))] border-border",
+  accent: "border-transparent bg-[hsl(var(--accent))] text-black hover:bg-[hsl(var(--accent))]/80",
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${className}`.trim();
+---
+
+<div class={classes} {...props}>
+  <slot />
+</div>

@@ -1,0 +1,12 @@
+---
+interface CardFooterProps extends astroHTML.JSX.HTMLAttributes {
+  class?: string;
+}
+
+const { class: className = "", ...props } = Astro.props as CardFooterProps;
+const classes = `flex items-center p-6 pt-0 ${className}`.trim();
+---
+
+<div class={classes} {...props}>
+  <slot />
+</div>
