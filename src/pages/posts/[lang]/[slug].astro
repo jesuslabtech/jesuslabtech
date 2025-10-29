@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
+import { ArrowLeftIcon } from "@lucide/astro";
 
 // Genera rutas para todos los posts, extrayendo lang y slug del id
 export async function getStaticPaths() {
@@ -19,7 +20,13 @@ const { Content } = await render(post);
 ---
 
 <Layout title={`${post.data.title}-article`}>
-  <article class="max-w-3xl mx-auto my-0 py-20 px-4">
+  <header class="bg-[hsl(var(--background))] mx-auto my-0 py-4 mb-8 max-w-5xl">
+    <a href="/#posts" class="inline-block mt-6 ml-6 text-[hsl(var(--primary))] hover:underline hover:cursor-pointer transition-colors">
+      <ArrowLeftIcon class="inline-block mr-2" />
+      Volver
+    </a>
+  </header>
+  <article class="max-w-l md:max-w-3xl mx-auto my-0 py-20 px-4">
     <h1 transition:name={`${post.slug}-view-transition-title`} class="text-center text-4xl font-bold mb-4 md:mb-6">{post.data.title}</h1>
     {post.data.coverImage && (
       <img
