@@ -75,6 +75,87 @@ const navItems: NavItem[] = [
 
 
 <script>
+  function setupHeaderBehavior() {
+    const header = document.getElementById("site-header");
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const logoBtn = document.getElementById("logo-btn");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    let isMobileMenuOpen = false;
+
+    function updateHeaderOnScroll() {
+      if (window.scrollY > 20) {
+        header?.classList.add(
+          "bg-background/80",
+          "backdrop-blur-md",
+          "shadow-sm",
+          "border-b",
+          "border-border/50"
+        );
+        header?.classList.remove("bg-transparent");
+      } else {
+        header?.classList.remove(
+          "bg-background/80",
+          "backdrop-blur-md",
+          "shadow-sm",
+          "border-b",
+          "border-border/50"
+        );
+        header?.classList.add("bg-transparent");
+      }
+    }
+
+    function initializeHeaderState() {
+      updateHeaderOnScroll();
+      setTimeout(updateHeaderOnScroll, 0);
+    }
+
+    window.addEventListener("scroll", updateHeaderOnScroll);
+    window.addEventListener("load", initializeHeaderState);
+
+    function scrollToSection(href: string) {
+      if (href === "#") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const element = document.querySelector(href);
+        if (element) element.scrollIntoView({ behavior: "smooth" });
+      }
+      closeMenu();
+    }
+
+    logoBtn?.addEventListener("click", () => scrollToSection("#"));
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("data-href");
+      if (href) link.addEventListener("click", () => scrollToSection(href));
+    });
+
+    menuBtn?.addEventListener("click", () => {
+      isMobileMenuOpen = !isMobileMenuOpen;
+      if (isMobileMenuOpen) {
+        mobileMenu?.classList.remove("hidden");
+        menuIcon?.classList.add("hidden");
+        closeIcon?.classList.remove("hidden");
+      } else {
+        closeMenu();
+      }
+    });
+
+    function closeMenu() {
+      isMobileMenuOpen = false;
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+    }
+  }
+
+  // Ejecutar en carga inicial y en cada navegación SPA
+  document.addEventListener("astro:page-load", setupHeaderBehavior);
+</script>
+
+<!-- <script>
   /* Script para comportamiento dinámico */
   const header = document.getElementById("site-header");
   const menuBtn = document.getElementById("mobile-menu-btn");
@@ -87,7 +168,7 @@ const navItems: NavItem[] = [
   let isMobileMenuOpen = false;
 
   // Scroll behavior
-  window.addEventListener("scroll", () => {
+  function updateHeaderOnScroll() {
     if (window.scrollY > 20) {
       header?.classList.add("bg-background/80", "backdrop-blur-md", "shadow-sm", "border-b", "border-border/50");
       header?.classList.remove("bg-transparent");
@@ -95,7 +176,15 @@ const navItems: NavItem[] = [
       header?.classList.remove("bg-background/80", "backdrop-blur-md", "shadow-sm", "border-b", "border-border/50");
       header?.classList.add("bg-transparent");
     }
-  });
+  }
+
+  function initializeHeaderState() {
+    updateHeaderOnScroll(); // Ensure correct state on page load
+    setTimeout(updateHeaderOnScroll, 0); // Handle potential delays in rendering
+  }
+
+  window.addEventListener("scroll", updateHeaderOnScroll);
+  window.addEventListener("load", initializeHeaderState);
 
   // Smooth scroll for logo and nav links
   function scrollToSection(href?: string | undefined) {
@@ -136,4 +225,4 @@ const navItems: NavItem[] = [
     menuIcon?.classList.remove("hidden");
     closeIcon?.classList.add("hidden");
   }
-</script>
+</script> -->
