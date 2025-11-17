@@ -1,46 +1,51 @@
-# Astro Starter Kit: Basics
+# 💼 jesuslabtech — Personal Repository
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Bienvenido a mi repositorio personal. Aquí recopilo proyectos, experimentos, configuraciones y recursos que utilizo para aprender, practicar y trabajar en distintas tecnologías. Este espacio funciona como un laboratorio donde organizo ideas, desarrollo prototipos y documento mi crecimiento como ingeniero DevOps y desarrollador.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### 🚀 Sobre mí
 
-## 🚀 Project Structure
+Soy un desarrollador/a interesado/a en:
 
-Inside of your Astro project, you'll see the following folders and files:
+- 🔧 AWS, docker, typescript, bash, terraform, ...
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+- 📚 Aprendizaje continuo y buenas prácticas
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- 🧪 Exploración de nuevas herramientas y frameworks
 
-## 🧞 Commands
+- 🤝 Contribución a proyectos open-source
 
-All commands are run from the root of the project, from a terminal:
+Puedes saber más sobre mi trabajo en mi perfil de GitHub o contactarme a través de mis redes profesionales.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+### 📂 Contenido del repositorio
 
-## 👀 Want to learn more?
+Este repo incluye:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- 📝 Notas y snippets de aprendizaje
+
+- 🧩 Proyectos pequeños y prototipos
+
+- ⚙️ Configuraciones y utilidades
+
+- 📦 Ejemplos y plantillas reutilizables
+
+La estructura puede cambiar con el tiempo, ya que este repositorio evoluciona según mis intereses y necesidades.
+
+### 🛠️ Tecnologías destacadas
+
+Algunas de las tecnologías que verás habitualmente en mis proyectos:
+
+1. Cloud (AWS)
+
+2. Astro
+
+3. Docker
+
+
+### 🤝 Contribuciones
+
+Este repositorio es principalmente personal, pero estoy abierto/a a sugerencias o ideas.
+Si encuentras algo que quieras comentar, no dudes en abrir un issue o enviarme un mensaje.
+
+### 📜 Licencia
+
+A menos que se indique lo contrario, el contenido de este repositorio se encuentra bajo la licencia MIT.
