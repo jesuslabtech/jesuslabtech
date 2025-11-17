@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @layer base {
     :root {
         --background: 210 20% 98%;
@@ -39,19 +38,12 @@
         --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.15);
 
         --sidebar-background: 0 0% 98%;
-
         --sidebar-foreground: 240 5.3% 26.1%;
-
         --sidebar-primary: 240 5.9% 10%;
-
         --sidebar-primary-foreground: 0 0% 98%;
-
         --sidebar-accent: 240 4.8% 95.9%;
-
         --sidebar-accent-foreground: 240 5.9% 10%;
-
         --sidebar-border: 220 13% 91%;
-
         --sidebar-ring: 217.2 91.2% 59.8%;
     }
 
@@ -97,24 +89,99 @@
         --sidebar-border: 217 32% 22%;
         --sidebar-ring: 217 91% 60%;
     }
-}
-
-@layer base {
-    * {
-        /* @apply border-border; */
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box
-    }
 
     html,
     body {
         margin: 0;
+        padding: 0;
         width: 100%;
         min-height: 100%;
-        &.dark {
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
-        }
+    }
+
+    body.dark {
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+    }
+
+    .prose {
+        color: hsl(var(--foreground));
+        max-width: 65ch;
+    }
+
+    .prose h1 {
+        font-size: 2.25em;
+        font-weight: 800;
+        margin-top: 0;
+        margin-bottom: 0.8888889em;
+        line-height: 1.1111111;
+        text-align: center;
+    }
+
+    .prose h2 {
+        font-size: 1.5em;
+        font-weight: 700;
+        margin-top: 2em;
+        margin-bottom: 1em;
+        line-height: 1.3333333;
+        text-align: center;
+    }
+
+    .prose p {
+        margin-top: 1.25em;
+        margin-bottom: 1.25em;
+        line-height: 1.75;
+    }
+
+    .prose a {
+        color: hsl(var(--primary));
+        text-decoration: underline;
+        font-weight: 500;
+    }
+
+    .prose strong {
+        font-weight: 600;
+    }
+
+    .prose em {
+        font-style: italic;
+    }
+
+    .prose code {
+        background-color: hsl(var(--muted));
+        padding: 0.2em 0.4em;
+        border-radius: 0.25rem;
+        font-size: 0.875em;
+    }
+
+    .prose pre {
+        background-color: hsl(var(--muted));
+        padding: 1em;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin-top: 1.7142857em;
+        margin-bottom: 1.7142857em;
+    }
+
+    .prose pre code {
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .prose ol,
+    .prose ul {
+        margin-top: 1.25em;
+        margin-bottom: 1.25em;
+        padding-left: 1.625em;
+    }
+
+    .prose li {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    .prose-invert {
+        --tw-prose-body: hsl(var(--foreground));
+        --tw-prose-headings: hsl(var(--foreground));
+        --tw-prose-links: hsl(var(--primary));
     }
 }
