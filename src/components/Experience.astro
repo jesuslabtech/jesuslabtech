@@ -6,14 +6,14 @@ import Badge from "@/components/ui/Badge.astro";
 
 const experiences = [
   {
-    title: "Junior DevOps Engineer",
+    title: "Junior Cloud Engineer",
     company: "Crononauta S.L",
     period: "Noviembre 2024 - Octubre 2025",
     location: "Remoto",
     description:
-      "Desarrollo y mantenimiento de infraestructura cloud en AWS, implementación de pipelines CI/CD y automatización de procesos de despliegue.",
+      "Mantenimiento y monitorización de infraestructura cloud en AWS",
     achievements: [
-      "Migración de la infraestructura interna de monitorización a otra VPC sin caída del servicio",
+      "Migración de la infraestructura interna de monitorización a una nueva VPC sin caída del servicio",
       "Resolución de incidencias en entornos Cloud del cliente",
       "Operador de guardias 24/7 para servicios críticos en AWS",
       "Clonación de entornos productivos para entornos de desarrollo y testing",
@@ -27,14 +27,14 @@ const experiences = [
 
 
 <div class="max-w-[80%] mx-auto my-0 py-20">
-  <!-- Título -->
+  
   <div class="text-center mb-16">
     <h2 class="text-4xl md:text-5xl font-bold mb-4">Experiencia Laboral</h2>
     <p class="text-xl text-balance text-muted-[hsl(var(--foreground))] max-w-2xl mx-auto">
-      Trayectoria profesional en DevOps e infraestructura Cloud
+      Trayectoria profesional en Cloud e infraestructura AWS.
     </p>
   </div>
-  <!-- Lista de experiencias -->
+  
   <div class="max-w-4xl mx-auto space-y-6">
     {experiences.map((exp, index) => (
       <Card
