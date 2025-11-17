@@ -1,22 +1,22 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import { ArrowLeftIcon } from "@lucide/astro";
 
-// Genera rutas para todos los posts, extrayendo lang y slug del id
+// 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
-  return posts.map((post) => {
-    const [lang, ...slugParts] = post.slug.split("/");
-    return {
-      params: { lang, slug: slugParts.join("/") },
-      props: { post },
-    };
-  });
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+console.log("Rendering post:", post);
+
+// La forma correcta de obtener el Content component
+const { Content } = await post.render();
 ---
 
 <Layout title={`${post.data.title}-article`}>
@@ -39,7 +39,7 @@ const { Content } = await render(post);
     <div class="flex justify-end gap-2">
         <small class="text-muted-[hsl(var(--foreground))] mb-8">{post.data.author}, {new Date(post.data.date).toLocaleDateString()}</small>
     </div> 
-    <div class="prose prose-invert max-w-none">
+    <div class="prose prose-lg prose-invert max-w-none">
       <Content />
     </div>
   </article>
