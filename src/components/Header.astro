@@ -8,11 +8,11 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Inicio", href: "#" },
-  { label: "Experiencia", href: "#experience" },
-  { label: "Proyectos", href: "#projects" },
-  /* { label: "Sobre mí", href: "#about" }, */
-  { label: "Contacto", href: "#contact" },
+  { label: "Home", href: "#" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  /* { label: "About Me", href: "#about" }, */
+  { label: "Contact", href: "#contact" },
 ];
 ---
 
@@ -59,7 +59,7 @@ const navItems: NavItem[] = [
     {/* Mobile Navigation */}
     <div
       id="mobile-menu"
-      class="hidden md:hidden pb-4 animate-in fade-in slide-in-from-top-2 duration-300 max-w-[50%] items-center justify-center mx-auto"
+      class="md:hidden pb-4 animate-in fade-in slide-in-from-top-2 duration-300 max-w-[25%] flex flex-col items-end justify-end ml-auto"
     >
       {navItems.map((item) => (
         <button
