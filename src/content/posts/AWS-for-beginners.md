@@ -1,5 +1,5 @@
 ---
-title: "AWS for beginers"
+title: "AWS for beginners"
 lang: "en"
 author: Jesús Merlo
 email: jesus.lab.tech@gmail.com
