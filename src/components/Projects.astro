@@ -21,20 +21,18 @@ const projectsplaceholders: Project[] = [
             "I configured a monitoring and logging stack using Prometheus and Grafana to visualize application metrics and logs in an AWS account.",
         tags: ["AWS", "Prometheus", "Grafana", "CloudWatch"],
         links: {
-            demo: "#",
-            github: "#",
+            github: "https://github.com/jesuslabtech/aws-observability-lab",
         },
     },
-    {
+/*     {
         title: "Automated Infrastructure on AWS",
         description:
             "I designed and implemented a fully automated infrastructure on AWS using Terraform for a microservices-based application.",
         tags: ["Terraform", "AWS", "CodePipeline", "ECS"],
         links: {
-            demo: "#",
             github: "#",
         },
-    },
+    }, */
 ];
 ---
 
@@ -81,19 +79,26 @@ const projectsplaceholders: Project[] = [
                             size="sm"
                             class="gap-2"
                             href={project.links.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            
                         >
                             <Github class="h-4 w-4" />
                             Code
                         </Button>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            class="gap-2"
-                            href={project.links.demo}
-                        >
-                            <ExternalLink class="h-4 w-4" />
-                            Demo
-                        </Button>
+                        {project.links.demo && (
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                className="gap-2"
+                                href={project.links.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <ExternalLink class="h-4 w-4" />
+                                Demo
+                            </Button>
+                        )}
                     </div>
                 </Card>
             ))
