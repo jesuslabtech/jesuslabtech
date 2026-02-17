@@ -3,8 +3,11 @@ import Card from "@/components/ui/Card.astro";
 import Badge from "@/components/ui/Badge.astro";
 import Button from "@/components/ui/Button.astro";
 import { Github, ExternalLink } from "@lucide/astro";
+import CloudMoniDashboard from "@/assets/Cloud-Monitor-Dashboard.webp";
+import argocdDashboard from "@/assets/argocd-prod-app-dashboard.webp";
 
 interface Project {
+    imgUrl?: string;
     title: string;
     description: string;
     tags: string[];
@@ -16,25 +19,35 @@ interface Project {
 
 const projectsplaceholders: Project[] = [
     {
+        imgUrl: CloudMoniDashboard.src,
         title: "Monitoring, Logging, and Alerting Stack with Prometheus and Grafana",
         description:
-            "I configured a monitoring and logging stack using Prometheus and Grafana to visualize application metrics and logs in an AWS account.",
-        tags: ["AWS", "Prometheus", "Grafana", "CloudWatch"],
+            "A monitoring and logging stack using Prometheus and Grafana to visualize application metrics and logs in an AWS account.",
+        tags: ["AWS", "Prometheus", "Grafana", "Terraform", "Ansible"],
         links: {
-            demo: "#",
-            github: "#",
+            github: "https://github.com/jesuslabtech/aws-observability-lab",
         },
     },
-    {
+/*     {
         title: "Automated Infrastructure on AWS",
         description:
             "I designed and implemented a fully automated infrastructure on AWS using Terraform for a microservices-based application.",
         tags: ["Terraform", "AWS", "CodePipeline", "ECS"],
         links: {
-            demo: "#",
             github: "#",
         },
-    },
+    }, */
+
+    {
+        imgUrl: argocdDashboard.src,
+        title: "CI/CD Pipeline with Github Actions, ArgoCD, and Kubernetes",
+        description:
+            "An example of a DevSecOps CI/CD pipeline using Github Actions, ArgoCD, and Kubernetes to automate the deployment of my task manager application.",
+        tags: ["Github Actions", "ArgoCD", "Kubernetes", "CI/CD"],
+        links: {
+            github: "https://github.com/jesuslabtech/task-manager-gitops",
+        },
+    }
 ];
 ---
 
@@ -51,9 +64,14 @@ const projectsplaceholders: Project[] = [
             projectsplaceholders.map((project, index) => (
                 <Card
                     key={project.title}
-                    class="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border/50"
+                    class="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border/50 min-h-[550px]"
                     style={`animation-delay: ${index * 100}ms;`}
                 >
+                    <img
+                        src={project.imgUrl}
+                        alt={project.title}
+                        class="w-full h-56 object-cover mb-4 rounded-lg"
+                    />
                     <h3 class="text-2xl font-bold mb-3">{project.title}</h3>
                     <p class="text-muted-foreground mb-4 leading-relaxed">
                         {project.description}
@@ -81,19 +99,26 @@ const projectsplaceholders: Project[] = [
                             size="sm"
                             class="gap-2"
                             href={project.links.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            
                         >
                             <Github class="h-4 w-4" />
                             Code
                         </Button>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            class="gap-2"
-                            href={project.links.demo}
-                        >
-                            <ExternalLink class="h-4 w-4" />
-                            Demo
-                        </Button>
+                        {project.links.demo && (
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                className="gap-2"
+                                href={project.links.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <ExternalLink class="h-4 w-4" />
+                                Demo
+                            </Button>
+                        )}
                     </div>
                 </Card>
             ))
