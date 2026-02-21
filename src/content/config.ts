@@ -12,7 +12,7 @@ const posts = defineCollection({
         description: z.string(),
         tags: z.array(z.string()).optional(),
         draft: z.boolean().optional().default(false),
-        coverImage: z.string().url().optional(),
+        coverImage: z.string().optional(),
     }), 
 });
 
