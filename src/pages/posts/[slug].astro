@@ -16,13 +16,13 @@ const { Content } = await post.render();
 ---
 
 <Layout title={`${post.data.title}-article`}>
-  <header class="bg-[hsl(var(--background))] mx-auto my-0 py-4 mb-8 max-w-5xl">
-    <a href="/#posts" class="inline-block mt-6 ml-6 text-[hsl(var(--primary))] hover:underline hover:cursor-pointer transition-colors">
+  <div class="max-w-3xl mx-auto py-8 px-4">
+    <a href="/#writing" class="inline-block text-amber-500 hover:underline transition-colors">
       <ArrowLeftIcon class="inline-block mr-2" />
       Volver
     </a>
-  </header>
-  <article class="max-w-l md:max-w-3xl mx-auto my-0 py-20 px-4">
+  </div>
+  <article class="max-w-l md:max-w-3xl mx-auto my-0 py-8 px-4">
     <h1 transition:name={`${post.slug}-view-transition-title`} class="text-center text-4xl font-bold mb-4 md:mb-6">{post.data.title}</h1>
     {post.data.coverImage && (
       <img

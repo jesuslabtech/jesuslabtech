@@ -3,43 +3,30 @@ import Card from "@components/ui/Card.astro";
 import { getCollection} from "astro:content"
 const posts = await getCollection('posts');
 
-const latestPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()).slice(0, 4);
+const latestPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()).slice(0, 2);
 ---
 
-
-<div class="max-w-[80%] mx-auto my-0 py-20">
-    <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">Posts</h2>
-        <p class="text-xl text-balance text-muted-[hsl(var(--foreground))] max-w-2xl mx-auto mb-8">
-            Latest articles published.
-        </p>
+<div class="max-w-4xl mx-auto px-6 py-20">
+    <div class="flex items-center justify-center mb-12 gap-2">
+        <span class="text-amber-400 text-sm font-semibold tracking-[0.2em] uppercase">Writing</span>
+        <span class="text-amber-400 text-xl font-mono">→</span>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         {latestPosts.map((post, idx) => (
-            <Card
-                class="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border/50 bg-card/50 backdrop-blur-sm flex flex-col"
-                style={`animation-delay: ${idx * 100}ms`}
-                key={post.id || post.slug}
-            >
-                <h3 transition:name={`${post.slug}-view-transition-title`} class="text-center text-2xl font-bold mb-4">{post.data.title}</h3>
-                {post.data.coverImage && (
-                    <a href={`/posts/${post.slug}`} class="cursor-pointer">
+            <a href={`/posts/${post.slug}`} class="block">
+                <div class="glass-card rounded-2xl p-6 h-full transition-all duration-300 hover:border-amber-500/30">
+                    {post.data.coverImage && (
                         <img
-                        transition:name={`${post.slug}-view-transition-img`}
-                        src={post.data.coverImage} 
-                        alt={post.data.title} 
-                        class="w-full h-48 object-cover mb-4 rounded-lg" 
-                    />
-                    </a>
-                    
-                )}
-                <p class="text-center text-muted-[hsl(var(--foreground))] mb-4">{post.data.description}</p>
-                <div class="flex-1"></div>
-                <div class="flex items-center justify-between mt-4">
-                    <small class="text-gray-500">{new Date(post.data.date).toLocaleDateString()}</small>
-                    <a href={`/posts/${post.slug}`} class="text-[hsl(var(--primary))] hover:underline font-medium">Leer más</a>
+                            src={post.data.coverImage}
+                            alt={post.data.title}
+                            class="w-full h-40 object-cover rounded-xl mb-5 opacity-80"
+                        />
+                    )}
+                    <h3 class="text-lg font-semibold text-white mb-2 line-clamp-2">{post.data.title}</h3>
+                    <p class="text-gray-300 text-sm mb-4 line-clamp-2">{post.data.description}</p>
+                    <span class="text-gray-400 text-xs font-mono">{new Date(post.data.date).toLocaleDateString()}</span>
                 </div>
-            </Card>
+            </a>
         ))}
     </div>
 </div>
