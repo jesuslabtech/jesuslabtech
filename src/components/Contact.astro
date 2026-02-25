@@ -1,99 +1,55 @@
 ---
-import Card  from "@components/ui/Card.astro";
-import { Mail, Linkedin, Github, MapPin } from "@lucide/astro";
+import Button from "@components/ui/Button.astro";
+import { Mail, Linkedin, Github } from "@lucide/astro";
 ---
 
-<div class="max-w-[80%] mx-auto my-0 py-20">
-    <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">Contact me</h2>
-        <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Open to new opportunities and collaborations. Let's talk!
-        </p>
+<div id="contact" class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <div class="flex items-center justify-center mb-8 gap-2">
+        <span class="text-amber-400 text-sm font-semibold tracking-[0.2em] uppercase">Get in Touch</span>
+        <span class="text-amber-400 text-xl font-mono">→</span>
     </div>
+    
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        Let's work together
+    </h2>
+    
+    <p class="text-gray-300 text-lg mb-10 max-w-xl mx-auto">
+        I'm currently available for freelance work and full-time opportunities.
+    </p>
 
-    <div class="max-w-3xl mx-auto">
-        <Card class="p-8 md:p-12">
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div class="space-y-6">
-                    <div class="flex items-start gap-4">
-                        <div
-                            class="p-3 rounded-lg bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]"
-                        >
-                            <Mail class="h-6 w-6" />
-                        </div>
-                        <div>
-                            <h3 class="font-semibold mb-1">Email</h3>
-                            <a
-                                href="mailto:jesus.lab.tech@gmail.com"
-                                class="text-muted-foreground hover:text-[hsl(var(--primary))] hover:cursor-pointer transition-colors"
-                            >
-                                jesus.lab.tech@gmail.com
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start gap-4">
-                        <div
-                            class="p-3 rounded-lg bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]"
-                        >
-                            <MapPin class="h-6 w-6" />
-                        </div>
-                        <div>
-                            <h3 class="font-semibold mb-1">Location</h3>
-                            <p class="text-muted-foreground">
-                                Andalusia, Spain
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="flex items-start gap-4">
-                        <div
-                            class="p-3 rounded-lg bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]"
-                        >
-                            <Linkedin class="h-6 w-6" />
-                        </div>
-                        <div>
-                            <h3 class="font-semibold mb-1">LinkedIn</h3>
-                            <a
-                                href="https://linkedin.com/in/JesusMerlo"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-muted-foreground hover:text-[hsl(var(--primary))] hover:cursor-pointer transition-colors"
-                            >
-                                linkedin.com/in/JesusMerlo
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start gap-4">
-                        <div
-                            class="p-3 rounded-lg bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))]"
-                        >
-                            <Github class="h-6 w-6" />
-                        </div>
-                        <div>
-                            <h3 class="font-semibold mb-1">GitHub</h3>
-                            <a
-                                href="https://github.com/jesuslabtech/jesuslabtech"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-muted-foreground hover:text-[hsl(var(--primary))] hover:cursor-pointer transition-colors"
-                            >
-                                github.com/jesuslabtech
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center pt-6 border-t">
-                <p class="text-muted-foreground mb-6">
-                    Don't hesitate to reach out for questions, collaborations, or just to chat about technology.
-                </p>
-                
-            </div>
-        </Card>
+    <div class="flex flex-wrap gap-4 justify-center mb-12">
+        <Button
+            variant="default"
+            size="lg"
+            class="gap-2"
+            href="mailto:jesus.lab.tech@gmail.com"
+        >
+            <Mail class="h-5 w-5" />
+            Email me
+        </Button>
+        
+        <Button
+            variant="outline"
+            size="lg"
+            class="gap-2"
+            href="https://linkedin.com/in/jesusmerlo"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <Linkedin class="h-5 w-5" />
+            LinkedIn
+        </Button>
+        
+        <Button
+            variant="outline"
+            size="lg"
+            class="gap-2"
+            href="https://github.com/jesuslabtech"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <Github class="h-5 w-5" />
+            GitHub
+        </Button>
     </div>
 </div>
