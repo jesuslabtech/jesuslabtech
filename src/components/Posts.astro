@@ -8,13 +8,14 @@ const latestPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new D
 <div class="max-w-4xl mx-auto px-6 py-24">
     <div class="flex items-center justify-center mb-16 gap-3">
         <span class="w-12 h-px bg-gradient-to-r from-transparent to-amber-500/50"></span>
-        <span class="text-amber-400 text-sm font-semibold tracking-[0.3em] uppercase" style="font-family: 'JetBrains Mono', monospace;">Writing</span>
+        <span class="text-amber-400 text-sm font-semibold tracking-[0.3em] uppercase" style="font-family: 'JetBrains Mono', monospace;">Posts</span>
         <span class="w-12 h-px bg-gradient-to-l from-transparent to-amber-500/50"></span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {latestPosts.map((post, idx) => (
             <a href={`/posts/${post.slug}`} class="block group">
-                <div class="glass-card rounded-2xl p-6 h-full hover-lift">
+                <div class="glass-card rounded-2xl p-6 h-full hover-lift flex flex-col">
+                    <h3 transition:name={`${post.slug}-view-transition-title`} class="text-lg font-semibold text-white mb-3 line-clamp-2 text-center" style="font-family: 'Outfit', sans-serif;">{post.data.title}</h3>
                     {post.data.coverImage && (
                         <div class="relative overflow-hidden rounded-xl mb-5">
                             <img
@@ -26,9 +27,11 @@ const latestPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new D
                             <div class="absolute inset-0 bg-gradient-to-t from-[#030712]/50 to-transparent"></div>
                         </div>
                     )}
-                    <h3 transition:name={`${post.slug}-view-transition-title`} class="text-lg font-semibold text-white mb-2 line-clamp-2" style="font-family: 'Outfit', sans-serif;">{post.data.title}</h3>
-                    <p class="text-gray-300 text-sm mb-4 line-clamp-2">{post.data.description}</p>
-                    <span class="text-gray-500 text-xs" style="font-family: 'JetBrains Mono', monospace;">{new Date(post.data.date).toLocaleDateString()}</span>
+                    <p class="text-gray-300 text-sm mb-4 line-clamp-2 flex-1">{post.data.description}</p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-gray-500 text-xs" style="font-family: 'JetBrains Mono', monospace;">{new Date(post.data.date).toLocaleDateString()}</span>
+                        <span class="text-amber-400 hover:text-amber-300 text-sm font-medium transition-colors">Read more →</span>
+                    </div>
                 </div>
             </a>
         ))}
