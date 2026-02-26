@@ -11,7 +11,7 @@ tags: [
     "DevOps",
 ]
 draft: false
-coverImage: "/terraform-infrastructure-folders.webp"
+coverImage: "/Terraform-folder-env.webp"
 ---
 
 ## Planning the future 

@@ -9,7 +9,7 @@ tags: [
     "AWS", "Entry-level", "5min", "EC2", "IAM", 
 ]
 draft: false
-coverImage: "https://lituus.cl/Analytics/cloud-computing/IMG/Logo-AWS-smile.webp"
+coverImage: "/Logo-AWS-smile.webp"
 ---
 ## What is AWS?
 

@@ -6,19 +6,19 @@ const currentYear = new Date().getFullYear();
 const socialLinks = [
     { icon: Github, href: "https://github.com/jesuslabtech", label: "GitHub" },
     { icon: Linkedin, href: "https://linkedin.com/in/jesusmerlo", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:jesus@jesusmerlo.es", label: "Email" },
+    { icon: Mail, href: "mailto:jesus.lab.tech@gmail.com", label: "Email" },
 ];
 ---
 
-<footer class="border-t border-gray-800 mx-auto py-12">
+<footer class="border-t border-gray-800/50 mx-auto py-16">
     <div class="max-w-4xl mx-auto px-6">
-        <div class="flex flex-col items-center gap-6">
-            <div class="flex items-center gap-2 mb-2">
-                <div class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
-                <span class="text-amber-400 text-sm font-mono">Available for work</span>
+        <div class="flex flex-col items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-2.5 h-2.5 bg-amber-500 rounded-full animate-pulse"></div>
+                <span class="text-amber-400 text-sm tracking-wide" style="font-family: 'JetBrains Mono', monospace;">Available for work</span>
             </div>
             
-            <div class="flex items-center gap-5">
+            <div class="flex items-center gap-6">
                 {socialLinks.map((social) => {
                     const Icon = social.icon;
                     return (
@@ -26,16 +26,18 @@ const socialLinks = [
                             href={social.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-gray-400 hover:text-amber-400 transition-colors"
+                            class="group flex items-center gap-2 text-gray-500 hover:text-amber-400 transition-all duration-300"
                             aria-label={social.label}
                         >
-                            <Icon class="h-5 w-5" />
+                            <Icon class="h-5 w-5 group-hover:scale-110 transition-transform" />
                         </a>
                     );
                 })}
             </div>
             
-            <p class="text-gray-400 text-sm font-mono">
+            <div class="w-24 h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
+            
+            <p class="text-gray-500 text-sm" style="font-family: 'JetBrains Mono', monospace;">
                 © {currentYear} Jesús Merlo <Heart class="h-3 w-3 inline-block text-amber-500 fill-amber-500 mb-1 ml-1" />
             </p>
         </div>
