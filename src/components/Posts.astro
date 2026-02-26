@@ -18,6 +18,7 @@ const latestPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new D
                     {post.data.coverImage && (
                         <div class="relative overflow-hidden rounded-xl mb-5">
                             <img
+                                transition:name={`${post.slug}-view-transition-img`}
                                 src={post.data.coverImage}
                                 alt={post.data.title}
                                 class="w-full h-40 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
@@ -25,7 +26,7 @@ const latestPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new D
                             <div class="absolute inset-0 bg-gradient-to-t from-[#030712]/50 to-transparent"></div>
                         </div>
                     )}
-                    <h3 class="text-lg font-semibold text-white mb-2 line-clamp-2" style="font-family: 'Outfit', sans-serif;">{post.data.title}</h3>
+                    <h3 transition:name={`${post.slug}-view-transition-title`} class="text-lg font-semibold text-white mb-2 line-clamp-2" style="font-family: 'Outfit', sans-serif;">{post.data.title}</h3>
                     <p class="text-gray-300 text-sm mb-4 line-clamp-2">{post.data.description}</p>
                     <span class="text-gray-500 text-xs" style="font-family: 'JetBrains Mono', monospace;">{new Date(post.data.date).toLocaleDateString()}</span>
                 </div>
