@@ -34,3 +34,7 @@ TODO.md
 
 # Ignore pen style test files
 *.pen
+
+# Agent skills
+*agents
+*skills*

@@ -11,14 +11,14 @@ const navItems: NavItem[] = [
   { label: "about", href: "#" },
   { label: "experience", href: "#experience" },
   { label: "work", href: "#work" },
-  { label: "writing", href: "#writing" },
+  { label: "posts", href: "#posts" },
   { label: "contact", href: "#contact" },
 ];
 ---
 
 <header
   id="site-header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent"
 >
   <div class="container mx-auto px-6">
     <nav class="flex items-center justify-between h-[72px]">
@@ -26,20 +26,22 @@ const navItems: NavItem[] = [
       <button
         id="logo-btn"
         data-href="#"
-        class="text-2xl font-bold text-amber-400 hover:text-amber-300 transition-colors"
+        class="text-2xl font-bold text-gradient hover:opacity-80 transition-all duration-300"
+        style="font-family: 'Outfit', sans-serif;"
       >
         JM
       </button>
 
       {/*Desktop Navigation */}
-      <div class="hidden md:flex items-center justify-center gap-9">
+      <div class="hidden md:flex items-center justify-center gap-10">
         {navItems.map((item) => (
           <button
             data-href={item.href}
-            class="nav-link hover:cursor-pointer text-gray-300 hover:text-white transition-colors text-base font-medium relative group"
+            class="nav-link hover:cursor-pointer text-gray-300 hover:text-white transition-all duration-300 text-sm font-medium relative group tracking-wide"
+            style="font-family: 'Outfit', sans-serif;"
           >
             {item.label}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-500 transition-all duration-300 group-hover:w-full"></span>
           </button>
         ))}
       </div>
@@ -48,7 +50,7 @@ const navItems: NavItem[] = [
       <Button
         variant="ghost"
         size="icon"
-        class="md:hidden"
+        class="md:hidden text-gray-300 hover:text-amber-400"
         id="mobile-menu-btn"
       >
         <Menu class="h-5 w-5" id="menu-icon" />
@@ -59,13 +61,14 @@ const navItems: NavItem[] = [
     {/* Mobile Navigation */}
     <div
       id="mobile-menu"
-      class="md:hidden fixed top-[72px] right-0 w-48 border-l border-amber-500/20 pb-4 animate-in fade-in slide-in-from-right-2 duration-300 hidden"
+      class="md:hidden fixed top-[72px] right-0 w-56 border-l border-amber-500/20 pb-4 animate-in fade-in slide-in-from-right-2 duration-300 hidden"
     >
-      <div class="flex flex-col pt-2">
+      <div class="flex flex-col pt-2 backdrop-blur-md bg-[#030712]/80">
         {navItems.map((item) => (
           <button
             data-href={item.href}
-            class="nav-link hover:cursor-pointer block w-full text-center py-3 px-6 text-gray-300 hover:text-white hover:bg-amber-500/10 transition-colors"
+            class="nav-link hover:cursor-pointer block w-full text-center py-4 px-6 text-gray-300 hover:text-white hover:bg-amber-500/10 transition-all duration-300 font-medium"
+            style="font-family: 'Outfit', sans-serif;"
           >
             {item.label}
           </button>

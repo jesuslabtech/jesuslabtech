@@ -17,9 +17,9 @@ const { Content } = await post.render();
 
 <Layout title={`${post.data.title}-article`}>
   <div class="max-w-3xl mx-auto py-8 px-4">
-    <a href="/#writing" class="inline-block text-amber-500 hover:underline transition-colors">
+    <a href="/#posts" class="inline-block text-amber-500 hover:underline transition-colors">
       <ArrowLeftIcon class="inline-block mr-2" />
-      Volver
+      Back
     </a>
   </div>
   <article class="max-w-l md:max-w-3xl mx-auto my-0 py-8 px-4">
@@ -29,7 +29,7 @@ const { Content } = await post.render();
         transition:name={`${post.slug}-view-transition-img`}
         src={post.data.coverImage}
         alt={post.data.title}
-        class="w-full h-64 object-cover mb-8 rounded-lg"
+        class="w-full max-h-[500px] object-contain mb-8 rounded-lg"
       />
     )}
     <div class="flex justify-end gap-2">
