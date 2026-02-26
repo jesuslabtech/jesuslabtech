@@ -6,7 +6,7 @@ const experiences = [
   {
     title: "Junior Cloud Engineer",
     company: "Crononauta S.L",
-    period: "Nov 2024 - Present",
+    period: "Nov 2024 - Oct 2025",
     location: "Remote",
     description:
       "Maintain and monitor cloud infrastructure on AWS with focus on high availability, automation, and incident response.",
@@ -21,34 +21,35 @@ const experiences = [
 ];
 ---
 
-<div class="max-w-4xl mx-auto px-6 py-20">
-  <div class="flex items-center justify-center mb-12 gap-2">
-    <span class="text-amber-400 text-sm font-semibold tracking-[0.2em] uppercase">Experience</span>
-    <span class="text-amber-400 text-xl font-mono">→</span>
+<div class="max-w-4xl mx-auto px-6 py-24">
+  <div class="flex items-center justify-center mb-16 gap-3">
+    <span class="w-12 h-px bg-gradient-to-r from-transparent to-amber-500/50"></span>
+    <span class="text-amber-400 text-sm font-semibold tracking-[0.3em] uppercase" style="font-family: 'JetBrains Mono', monospace;">Experience</span>
+    <span class="w-12 h-px bg-gradient-to-l from-transparent to-amber-500/50"></span>
   </div>
   
-  <div class="space-y-8">
+  <div class="space-y-6">
     {experiences.map((exp, index) => (
-      <div class="glass-card rounded-2xl p-7 transition-all duration-300">
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-5">
+      <div class="glass-card rounded-2xl p-8 hover-lift">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
           <div class="mb-4 md:mb-0">
-            <h3 class="text-xl font-semibold text-white mb-1">{exp.title}</h3>
-            <p class="text-amber-400 font-mono text-sm">{exp.company} · {exp.location}</p>
+            <h3 class="text-xl font-semibold text-white mb-2" style="font-family: 'Outfit', sans-serif;">{exp.title}</h3>
+            <p class="text-amber-400 text-sm" style="font-family: 'JetBrains Mono', monospace;">{exp.company} · {exp.location}</p>
           </div>
-          <div class="flex items-center gap-2 text-gray-400 font-mono text-sm">
+          <div class="flex items-center gap-2 text-gray-500 text-sm" style="font-family: 'JetBrains Mono', monospace;">
             <Calendar class="h-4 w-4" />
             <span>{exp.period}</span>
           </div>
         </div>
         
-        <p class="text-gray-300 mb-5 leading-relaxed">
+        <p class="text-gray-300 mb-6 leading-relaxed">
           {exp.description}
         </p>
         
-        <div class="mb-5">
-          <ul class="space-y-2">
+        <div class="mb-6">
+          <ul class="space-y-3">
             {exp.achievements.map((achievement) => (
-              <li class="text-gray-400 font-mono text-sm flex items-start gap-3">
+              <li class="text-gray-400 text-sm flex items-start gap-3" style="font-family: 'JetBrains Mono', monospace;">
                 <span class="text-amber-400 mt-0.5">→</span>
                 <span>{achievement}</span>
               </li>
@@ -58,7 +59,7 @@ const experiences = [
         
         <div class="flex flex-wrap gap-2">
           {exp.technologies.map((tech, idx) => (
-            <span class={`px-3 py-1.5 rounded-md text-xs font-mono ${idx === 0 ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 'bg-gray-800/50 text-gray-300'}`}>
+            <span class={`px-4 py-2 rounded-lg text-xs font-medium ${idx === 0 ? 'bg-gradient-to-r from-amber-500/15 to-amber-500/10 text-amber-400 border border-amber-500/20' : 'bg-gray-800/50 text-gray-300 border border-gray-700/50'}`} style="font-family: 'JetBrains Mono', monospace;">
               {tech}
             </span>
           ))}
