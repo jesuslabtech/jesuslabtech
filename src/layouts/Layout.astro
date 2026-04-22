@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
+import Analytics from '@vercel/analytics/astro'
 ---
 
 <!doctype html>
@@ -59,6 +60,7 @@ import { ClientRouter } from "astro:transitions";
 
 
 		<ClientRouter />
+		<Analytics />
 	</head>
 	<body class="dark min-h-screen bg-background text-foreground antialiased">
 		<div class="noise-overlay"></div>
