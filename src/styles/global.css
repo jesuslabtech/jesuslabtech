@@ -5,6 +5,18 @@
         --background: 222 47% 3%;
         --foreground: 210 40% 98%;
 
+        --shiki-color-text: #e2e8f0;
+        --shiki-color-background: transparent;
+        --shiki-token-constant: #f59e0b;
+        --shiki-token-string: #34d399;
+        --shiki-token-comment: #64748b;
+        --shiki-token-keyword: #f59e0b;
+        --shiki-token-parameter: #e2e8f0;
+        --shiki-token-function: #60a5fa;
+        --shiki-token-string-expression: #34d399;
+        --shiki-token-punctuation: #94a3b8;
+        --shiki-token-link: #60a5fa;
+
         --card: 222 47% 8%;
         --card-foreground: 210 40% 98%;
 
