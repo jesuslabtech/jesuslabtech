@@ -8,6 +8,8 @@ import argocdDashboard from "@/assets/argocd-prod-app-dashboard.webp";
 
 interface Project {
     imgUrl?: string;
+    imgWidth?: number;
+    imgHeight?: number;
     title: string;
     description: string;
     tags: string[];
@@ -20,6 +22,8 @@ interface Project {
 const projects: Project[] = [
     {
         imgUrl: CloudMoniDashboard.src,
+        imgWidth: CloudMoniDashboard.width,
+        imgHeight: CloudMoniDashboard.height,
         title: "Monitoring AWS Stack",
         description:
             "Prometheus + Grafana observability platform deployed on AWS with auto-scaling and high availability.",
@@ -30,6 +34,8 @@ const projects: Project[] = [
     },
     {
         imgUrl: argocdDashboard.src,
+        imgWidth: argocdDashboard.width,
+        imgHeight: argocdDashboard.height,
         title: "DevSecOps CI/CD Pipeline",
         description:
             "GitOps workflow with ArgoCD, Kubernetes, and GitHub Actions for automated deployments.",
@@ -56,6 +62,9 @@ const projects: Project[] = [
                         <img
                             src={project.imgUrl}
                             alt={project.title}
+                            width={project.imgWidth}
+                            height={project.imgHeight}
+                            loading="lazy"
                             class="w-full h-36 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                         />
                         <div class="absolute inset-0 bg-gradient-to-t from-[#030712]/50 to-transparent"></div>
