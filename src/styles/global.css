@@ -5,6 +5,18 @@
         --background: 222 47% 3%;
         --foreground: 210 40% 98%;
 
+        --shiki-color-text: #e2e8f0;
+        --shiki-color-background: transparent;
+        --shiki-token-constant: #f59e0b;
+        --shiki-token-string: #34d399;
+        --shiki-token-comment: #64748b;
+        --shiki-token-keyword: #f59e0b;
+        --shiki-token-parameter: #e2e8f0;
+        --shiki-token-function: #60a5fa;
+        --shiki-token-string-expression: #34d399;
+        --shiki-token-punctuation: #94a3b8;
+        --shiki-token-link: #60a5fa;
+
         --card: 222 47% 8%;
         --card-foreground: 210 40% 98%;
 
@@ -52,12 +64,9 @@
 
     body {
         background-color: hsl(var(--background));
-        background-image: 
+        background-image:
             radial-gradient(ellipse 80% 50% at 50% -20%, hsl(37 90% 12% / 0.3) 0%, transparent 50%),
-            radial-gradient(ellipse 60% 40% at 80% 60%, hsl(37 90% 8% / 0.15) 0%, transparent 40%),
-            radial-gradient(ellipse 50% 30% at 10% 80%, hsl(37 90% 6% / 0.1) 0%, transparent 30%),
             linear-gradient(180deg, hsl(222 47% 5%) 0%, hsl(222 47% 3%) 100%);
-        background-attachment: fixed;
         color: hsl(var(--foreground));
         font-family: 'Outfit', sans-serif;
     }
@@ -222,17 +231,6 @@
     }
 }
 
-@keyframes fade-in-scale {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
 @keyframes float {
     0%, 100% {
         transform: translateY(0);
@@ -242,33 +240,13 @@
     }
 }
 
-@keyframes shimmer {
-    0% {
-        background-position: -200% 0;
-    }
-    100% {
-        background-position: 200% 0;
-    }
-}
-
 .animate-fade-in-up {
     animation: fade-in-up 0.6s ease-out forwards;
-}
-
-.animate-fade-in-scale {
-    animation: fade-in-scale 0.5s ease-out forwards;
 }
 
 .animate-float {
     animation: float 6s ease-in-out infinite;
 }
-
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
-.delay-600 { animation-delay: 600ms; }
 
 .text-gradient {
     background: linear-gradient(135deg, hsl(37 90% 60%) 0%, hsl(45 90% 55%) 50%, hsl(37 90% 70%) 100%);

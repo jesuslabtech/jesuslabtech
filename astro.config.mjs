@@ -9,5 +9,11 @@ export default defineConfig({
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  markdown: {
+    shikiConfig: {
+      theme: 'css-variables',
+      wrap: false,
+    },
+  },
 });
