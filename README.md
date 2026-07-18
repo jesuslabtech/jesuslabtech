@@ -1,38 +1,38 @@
 # 💼 jesuslabtech — Personal Repository
 
-Bienvenido a mi repositorio personal. Aquí recopilo proyectos, experimentos, configuraciones y recursos que utilizo para aprender, practicar y trabajar en distintas tecnologías. Este espacio funciona como un laboratorio donde organizo ideas, desarrollo prototipos y documento mi crecimiento como ingeniero DevOps y desarrollador.
+Welcome to my personal repository. Here I collect projects, experiments, configurations, and resources that I use to learn, practice, and work with different technologies. This space functions as a lab where I organize ideas, develop prototypes, and document my growth as a DevOps engineer and developer.
 
-### 🚀 Sobre mí
+### 🚀 About Me
 
-Soy un desarrollador/a interesado/a en:
+I'm a developer interested in:
 
 - 🔧 AWS, docker, typescript, bash, terraform, ...
 
-- 📚 Aprendizaje continuo y buenas prácticas
+- 📚 Continuous learning and best practices
 
-- 🧪 Exploración de nuevas herramientas y frameworks
+- 🧪 Exploring new tools and frameworks
 
-- 🤝 Contribución a proyectos open-source
+- 🤝 Contributing to open-source projects
 
-Puedes saber más sobre mi trabajo en mi perfil de GitHub o contactarme a través de mis redes profesionales.
+You can learn more about my work on my GitHub profile or reach out through my professional networks.
 
-### 📂 Contenido del repositorio
+### 📂 Repository Contents
 
-Este repo incluye:
+This repo includes:
 
-- 📝 Notas y snippets de aprendizaje
+- 📝 Learning notes and snippets
 
-- 🧩 Proyectos pequeños y prototipos
+- 🧩 Small projects and prototypes
 
-- ⚙️ Configuraciones y utilidades
+- ⚙️ Configurations and utilities
 
-- 📦 Ejemplos y plantillas reutilizables
+- 📦 Reusable examples and templates
 
-La estructura puede cambiar con el tiempo, ya que este repositorio evoluciona según mis intereses y necesidades.
+The structure may change over time, as this repository evolves according to my interests and needs.
 
-### 🛠️ Tecnologías destacadas
+### 🛠️ Featured Technologies
 
-Algunas de las tecnologías que verás habitualmente en mis proyectos:
+Some of the technologies you'll commonly see in my projects:
 
 1. Cloud (AWS)
 
@@ -40,12 +40,15 @@ Algunas de las tecnologías que verás habitualmente en mis proyectos:
 
 3. Docker
 
+4. TypeScript
 
-### 🤝 Contribuciones
+5. Bash / Terraform
 
-Este repositorio es principalmente personal, pero estoy abierto/a a sugerencias o ideas.
-Si encuentras algo que quieras comentar, no dudes en abrir un issue o enviarme un mensaje.
+### 🤝 Contributions
 
-### 📜 Licencia
+This repository is primarily personal, but I'm open to suggestions or ideas.
+If you find something you'd like to discuss, feel free to open an issue or send me a message.
 
-A menos que se indique lo contrario, el contenido de este repositorio se encuentra bajo la licencia MIT.
+### 📜 License
+
+Unless otherwise noted, the content of this repository is licensed under the MIT license.
