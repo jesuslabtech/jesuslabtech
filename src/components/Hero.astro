@@ -3,7 +3,7 @@ import Button from "@components/ui/Button.astro";
 import { Github, Linkedin, Mail } from "@lucide/astro";
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<section id="top" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-[10%] left-[20%] w-[260px] h-[260px] bg-amber-500/3 rounded-full blur-[60px] animate-float"></div>
         <div class="absolute bottom-[20%] right-[10%] w-[200px] h-[200px] bg-amber-500/2 rounded-full blur-[50px] animate-float" style="animation-delay: -3s;"></div>
@@ -24,7 +24,7 @@ import { Github, Linkedin, Mail } from "@lucide/astro";
             Building castles in the cloud. Continuous integration and delivery. But above all, continuous learning.
         </p>
         
-        <p class="text-base md:text-lg text-gray-500 mb-12 max-w-xl mx-auto italic opacity-0 animate-fade-in-up" style="animation-delay: 400ms;">
+        <p class="text-base md:text-lg text-gray-400 mb-12 max-w-xl mx-auto italic opacity-0 animate-fade-in-up" style="animation-delay: 400ms;">
             "Curiosity is the appetite for knowledge."
         </p>
 
@@ -33,7 +33,7 @@ import { Github, Linkedin, Mail } from "@lucide/astro";
                 variant="default"
                 size="lg"
                 class="gap-2 px-8 py-3 text-base font-medium hover-lift"
-                onClick="window.location.href='#contact'"
+                href="#contact"
             >
                 <Mail class="h-5 w-5" />
                 Get in touch
@@ -43,7 +43,7 @@ import { Github, Linkedin, Mail } from "@lucide/astro";
                 variant="outline"
                 size="lg"
                 class="gap-2 px-8 py-3 text-base font-medium"
-                onClick="window.location.href='#work'"
+                href="#work"
             >
                 View work
             </Button>
@@ -54,6 +54,7 @@ import { Github, Linkedin, Mail } from "@lucide/astro";
                 href="https://github.com/jesuslabtech"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="GitHub"
                 class="group flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-all duration-300"
             >
                 <Github class="h-6 w-6 group-hover:scale-110 transition-transform" />
@@ -63,6 +64,7 @@ import { Github, Linkedin, Mail } from "@lucide/astro";
                 href="https://linkedin.com/in/jesusmerlo"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn"
                 class="group flex items-center gap-2 text-gray-400 hover:text-amber-400 transition-all duration-300"
             >
                 <Linkedin class="h-6 w-6 group-hover:scale-110 transition-transform" />
@@ -71,9 +73,9 @@ import { Github, Linkedin, Mail } from "@lucide/astro";
     </div>
     
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in-up" style="animation-delay: 900ms;">
-        <div class="flex flex-col items-center gap-2 text-gray-500">
+        <div class="flex flex-col items-center gap-2 text-gray-400">
             <span class="text-xs tracking-widest uppercase" style="font-family: 'JetBrains Mono', monospace;">Scroll</span>
-            <div class="w-px h-8 bg-gradient-to-b from-gray-500 to-transparent"></div>
+            <div class="w-px h-8 bg-gradient-to-b from-gray-400 to-transparent"></div>
         </div>
     </div>
 </section>

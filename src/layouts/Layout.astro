@@ -9,10 +9,21 @@ import "@fontsource/jetbrains-mono/latin-500.css";
 import { ClientRouter } from "astro:transitions";
 import Analytics from '@vercel/analytics/astro'
 import SpeedInsights from '@vercel/speed-insights/astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const defaultTitle = "Portfolio de Jesús Merlo - DevOps & Cloud Engineer";
+const defaultDescription =
+	"Jesús Merlo, Cloud Engineer: infraestructura en AWS, CI/CD, observabilidad y automatización con Terraform.";
+const { title = defaultTitle, description = defaultDescription } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, "https://jesuslabtech.vercel.app");
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,11 +33,9 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
 
-		<title>Portfolio de Jesús Merlo - DevOps & Cloud Engineer</title>
-		<meta
-			name="description"
-			content="Portfolio de Jesús Merlo - DevOps & Cloud Engineer"
-		/>
+		<link rel="canonical" href={canonicalURL} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
 		<meta
 			name="keywords"
 			content="Astro, DevOps, Cloud Engineer, Portfolio, Jesús Merlo, Desarrollo web, Infraestructura como código, CI/CD, AWS, Docker, Terraform"
@@ -35,27 +44,15 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 		<meta name="generator" content={Astro.generator} />
 
 		<meta property="og:type" content="website" />
-		<meta
-			property="og:title"
-			content="Portfolio de Jesús Merlo - DevOps & Cloud Engineer"
-		/>
-		<meta
-			property="og:description"
-			content="Portfolio de Jesús Merlo - DevOps & Cloud Engineer"
-		/>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
 		<meta property="og:image" content="https://jesuslabtech.vercel.app/portfolio-mock.png" />
-		<meta property="og:url" content="https://jesuslabtech.vercel.app" />
+		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:site_name" content="Portfolio de Jesús Merlo" />
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta
-			name="twitter:title"
-			content="Portfolio de Jesús Merlo - DevOps & Cloud Engineer"
-		/>
-		<meta
-			name="twitter:description"
-			content="Portfolio de Jesús Merlo - DevOps & Cloud Engineer"
-		/>
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content="https://jesuslabtech.vercel.app/portfolio-mock.png" />
 		
 

@@ -30,7 +30,7 @@ const latestPosts = posts.sort((a, b) => new Date(b.data.date).getTime() - new D
                     )}
                     <p class="text-gray-300 text-sm mb-4 line-clamp-2 flex-1">{post.data.description}</p>
                     <div class="flex items-center justify-between mt-auto">
-                        <span class="text-gray-500 text-xs" style="font-family: 'JetBrains Mono', monospace;">{new Date(post.data.date).toLocaleDateString()}</span>
+                        <span class="text-gray-400 text-xs" style="font-family: 'JetBrains Mono', monospace;">{new Date(post.data.date).toLocaleDateString('en-GB')}</span>
                         <span class="text-amber-400 hover:text-amber-300 text-sm font-medium transition-colors">Read more →</span>
                     </div>
                 </div>

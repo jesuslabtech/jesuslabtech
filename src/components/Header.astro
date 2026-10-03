@@ -8,7 +8,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "about", href: "#" },
+  { label: "about", href: "#about" },
   { label: "experience", href: "#experience" },
   { label: "work", href: "#work" },
   { label: "posts", href: "#posts" },
@@ -23,26 +23,29 @@ const navItems: NavItem[] = [
   <div class="container mx-auto px-6">
     <nav class="flex items-center justify-between h-[72px]">
       {/* Logo/Brand */}
-      <button
+      <a
         id="logo-btn"
+        href="#top"
         data-href="#"
+        aria-label="Inicio"
         class="text-2xl font-bold text-gradient hover:opacity-80 transition-all duration-300"
         style="font-family: 'Outfit', sans-serif;"
       >
         JM
-      </button>
+      </a>
 
       {/*Desktop Navigation */}
       <div class="hidden md:flex items-center justify-center gap-10">
         {navItems.map((item) => (
-          <button
+          <a
+            href={item.href}
             data-href={item.href}
             class="nav-link hover:cursor-pointer text-gray-300 hover:text-white transition-all duration-300 text-sm font-medium relative group tracking-wide"
             style="font-family: 'Outfit', sans-serif;"
           >
             {item.label}
             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-amber-500 transition-all duration-300 group-hover:w-full"></span>
-          </button>
+          </a>
         ))}
       </div>
 
@@ -52,6 +55,9 @@ const navItems: NavItem[] = [
         size="icon"
         class="md:hidden text-gray-300 hover:text-amber-400"
         id="mobile-menu-btn"
+        aria-label="Abrir menú"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
       >
         <Menu class="h-5 w-5" id="menu-icon" />
         <X class="h-5 w-5 hidden" id="close-icon" />
@@ -65,13 +71,14 @@ const navItems: NavItem[] = [
     >
       <div class="flex flex-col pt-2 backdrop-blur-md bg-[#030712]/80">
         {navItems.map((item) => (
-          <button
+          <a
+            href={item.href}
             data-href={item.href}
             class="nav-link hover:cursor-pointer block w-full text-center py-4 px-6 text-gray-300 hover:text-white hover:bg-amber-500/10 transition-all duration-300 font-medium"
             style="font-family: 'Outfit', sans-serif;"
           >
             {item.label}
-          </button>
+          </a>
         ))}
       </div>
     </div>
@@ -131,10 +138,17 @@ const navItems: NavItem[] = [
       closeMenu();
     }
 
-    logoBtn?.addEventListener("click", () => scrollToSection("#"));
+    logoBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      scrollToSection("#");
+    });
     navLinks.forEach((link) => {
       const href = link.getAttribute("data-href");
-      if (href) link.addEventListener("click", () => scrollToSection(href));
+      if (href)
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          scrollToSection(href);
+        });
     });
 
     menuBtn?.addEventListener("click", () => {
@@ -143,6 +157,7 @@ const navItems: NavItem[] = [
         mobileMenu?.classList.remove("hidden");
         menuIcon?.classList.add("hidden");
         closeIcon?.classList.remove("hidden");
+        menuBtn?.setAttribute("aria-expanded", "true");
       } else {
         closeMenu();
       }
@@ -153,6 +168,7 @@ const navItems: NavItem[] = [
       mobileMenu?.classList.add("hidden");
       menuIcon?.classList.remove("hidden");
       closeIcon?.classList.add("hidden");
+      menuBtn?.setAttribute("aria-expanded", "false");
     }
   }
 
