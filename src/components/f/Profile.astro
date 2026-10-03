@@ -1,0 +1,89 @@
+---
+import type { Content } from "@/i18n";
+import { profile } from "@/data/site";
+import LangSwitch from "./LangSwitch.astro";
+import HeroOffer from "./HeroOffer.astro";
+import Services from "./Services.astro";
+import Proof from "./Proof.astro";
+import Process from "./Process.astro";
+import Cases from "./Cases.astro";
+import About from "./About.astro";
+import Posts from "./Posts.astro";
+import Contact from "./Contact.astro";
+import Footer from "./Footer.astro";
+const { c, otherHref } = Astro.props as { c: Content; otherHref: string };
+---
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-amber-400 focus:px-4 focus:py-2 focus:text-black">{c.ui.skip}</a>
+<div class="layout-perfil lg:grid lg:grid-cols-[19rem_1fr]">
+	<aside class="profile-side border-b border-slate-800 px-6 py-8 lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-between lg:overflow-y-auto lg:border-b-0 lg:border-r lg:px-8 lg:py-10">
+		<div>
+			<div class="flex items-start justify-between gap-4">
+				<div>
+					<a href="#top" class="text-2xl font-bold tracking-tight text-slate-50">Jesús Merlo</a>
+					<p class="f-mono mt-1 text-xs text-amber-400">{c.hero.eyebrow}</p>
+				</div>
+				<LangSwitch c={c} href={otherHref} />
+			</div>
+
+			<p class="f-mono mt-6 flex items-center gap-2 text-xs text-slate-200"><span class="f-dot" aria-hidden="true"></span>{c.availability}</p>
+			<ul class="f-chips mt-4">
+				{c.hero.meta.map((m) => <li class="f-chip">{m}</li>)}
+			</ul>
+
+			<a href="#contact" class="f-btn f-btn-primary mt-8 w-full">{c.hero.ctaPrimary}</a>
+
+			<nav aria-label="Main" class="mt-8 hidden lg:block">
+				<ol class="side-nav f-mono text-sm">
+					{c.nav.map((item, i) => (
+						<li>
+							<a href={item.href} data-nav class="flex items-baseline gap-3 border-l border-slate-700 py-2 pl-4 text-slate-300 hover:text-amber-400">
+								<span class="text-xs text-slate-500">{String(i + 1).padStart(2, "0")}</span>{item.label}
+							</a>
+						</li>
+					))}
+				</ol>
+			</nav>
+		</div>
+
+		<ul class="f-mono mt-8 flex flex-wrap gap-x-5 gap-y-1 text-xs text-slate-300 lg:mt-10 lg:flex-col lg:gap-y-2">
+			<li><a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-amber-400">LinkedIn ↗</a></li>
+			<li><a href={profile.github} target="_blank" rel="noopener noreferrer" class="hover:text-amber-400">GitHub ↗</a></li>
+			<li><a href={`mailto:${profile.email}`} class="hover:text-amber-400">{profile.email}</a></li>
+		</ul>
+	</aside>
+
+	<div class="min-w-0">
+		<main id="main">
+			<HeroOffer c={c} showMeta={false} />
+			<Services c={c} />
+			<Proof c={c} />
+			<Cases c={c} />
+			<Process c={c} />
+			<About c={c} />
+			<Posts c={c} />
+			<Contact c={c} />
+		</main>
+		<Footer c={c} />
+	</div>
+</div>
+
+<script>
+	// Marca en el menú lateral la sección que se está leyendo.
+	const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-nav]")];
+	const map = new Map(links.map((a) => [a.getAttribute("href")!.slice(1), a]));
+	const io = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((e) => {
+				if (!e.isIntersecting) return;
+				links.forEach((a) => a.removeAttribute("aria-current"));
+				map.get(e.target.id)?.setAttribute("aria-current", "true");
+			});
+		},
+		{ rootMargin: "-30% 0px -60% 0px" },
+	);
+	map.forEach((_, id) => {
+		const el = document.getElementById(id);
+		if (el) io.observe(el);
+	});
+</script>

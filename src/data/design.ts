@@ -1,5 +1,5 @@
 /** Estructura de la página: qué secciones y en qué orden. Cada una es una ruta distinta en /preview. */
-export const LAYOUTS = ["servicios", "casos", "diagrama"] as const;
+export const LAYOUTS = ["servicios", "casos", "diagrama", "perfil"] as const;
 export type LayoutName = (typeof LAYOUTS)[number];
 
 /** Estilo visual: solo CSS (src/styles/skins.css), se cambia al instante sin recargar. */

@@ -337,3 +337,44 @@ a:focus-visible {
     transition: none;
   }
 }
+
+/* ---------- layout "perfil": barra lateral fija, contenido siempre alineado a la izquierda ---------- */
+.layout-perfil {
+  --sk-align: left;
+  --sk-head-justify: flex-start;
+  --sk-intro-margin: 0;
+}
+.layout-perfil .f-head::before,
+.layout-perfil .f-head::after {
+  display: none;
+}
+.layout-perfil .f-sec,
+.layout-perfil .f-hero {
+  max-width: 52rem;
+  margin-inline: 0;
+}
+.layout-perfil .f-hero {
+  padding-inline: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .layout-perfil .f-sec,
+  .layout-perfil .f-hero {
+    padding-inline: 3.5rem;
+  }
+}
+.layout-perfil .f-hero-title {
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+}
+.layout-perfil .profile-side {
+  background: #050a16;
+}
+.layout-perfil .side-nav a[aria-current="true"] {
+  color: var(--amber);
+  border-left-color: var(--amber);
+}
+.layout-perfil .f-btn {
+  width: auto;
+}
+.layout-perfil .profile-side .f-btn {
+  width: 100%;
+}

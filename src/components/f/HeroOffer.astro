@@ -1,6 +1,6 @@
 ---
 import type { Content } from "@/i18n";
-const { c } = Astro.props as { c: Content };
+const { c, showMeta = true } = Astro.props as { c: Content; showMeta?: boolean };
 ---
 
 <section id="top" class="f-hero mx-auto max-w-5xl px-6 pb-16 pt-20 md:pt-28">
@@ -11,7 +11,7 @@ const { c } = Astro.props as { c: Content };
 		<a href="#contact" class="f-btn f-btn-primary">{c.hero.ctaPrimary}</a>
 		<a href="#services" class="f-btn">{c.hero.ctaSecondary}</a>
 	</div>
-	<ul class="f-chips f-mono mt-10 text-sm" style="justify-content: var(--sk-head-justify, flex-start);">
+	{showMeta && <ul class="f-chips f-mono mt-10 text-sm" style="justify-content: var(--sk-head-justify, flex-start);">
 		{c.hero.meta.map((m) => <li class="f-chip">{m}</li>)}
-	</ul>
+	</ul>}
 </section>

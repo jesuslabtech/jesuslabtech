@@ -13,6 +13,7 @@ import About from "./About.astro";
 import Posts from "./Posts.astro";
 import Contact from "./Contact.astro";
 import Footer from "./Footer.astro";
+import Profile from "./Profile.astro";
 import DesignSwitcher from "./DesignSwitcher.astro";
 
 interface Props {
@@ -36,19 +37,26 @@ const alternates = [...LANGS.map((l) => ({ lang: l, href: `/${l}/` })), { lang: 
 	noindex={preview}
 	alternates={preview ? [] : alternates}
 >
-	<Header c={c} otherHref={href(other)} />
-	<main id="main">
-		{layout === "diagrama" ? <HeroDiagram c={c} /> : <HeroOffer c={c} />}
-		{layout === "casos" && <Cases c={c} featured />}
-		<Services c={c} />
-		<Proof c={c} />
-		<Process c={c} />
-		{layout === "servicios" && <Cases c={c} />}
-		{layout === "diagrama" && <Cases c={c} />}
-		<About c={c} />
-		<Posts c={c} />
-		<Contact c={c} />
-	</main>
-	<Footer c={c} />
+	{
+		layout === "perfil" ? (
+			<Profile c={c} otherHref={href(other)} />
+		) : (
+			<>
+				<Header c={c} otherHref={href(other)} />
+				<main id="main">
+					{layout === "diagrama" ? <HeroDiagram c={c} /> : <HeroOffer c={c} />}
+					{layout === "casos" && <Cases c={c} featured />}
+					<Services c={c} />
+					<Proof c={c} />
+					<Process c={c} />
+					{layout !== "casos" && <Cases c={c} />}
+					<About c={c} />
+					<Posts c={c} />
+					<Contact c={c} />
+				</main>
+				<Footer c={c} />
+			</>
+		)
+	}
 	{switcherEnabled() && <DesignSwitcher layout={layout} skin={skin} lang={lang} />}
 </Layout>
