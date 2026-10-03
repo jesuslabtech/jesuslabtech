@@ -1,0 +1,28 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import type { ThemeName } from "@/data/themes";
+import { switcherEnabled } from "@/data/themes";
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+import Classic from "./classic/Page.astro";
+import Terminal from "./terminal/Page.astro";
+import Editorial from "./editorial/Page.astro";
+import Dashboard from "./dashboard/Page.astro";
+import Showcase from "./showcase/Page.astro";
+
+const { name } = Astro.props as { name: ThemeName };
+
+const pages = {
+	classic: Classic,
+	terminal: Terminal,
+	editorial: Editorial,
+	dashboard: Dashboard,
+	showcase: Showcase,
+} satisfies Record<ThemeName, unknown>;
+
+const Page = pages[name];
+---
+
+<Layout>
+	<Page />
+	{switcherEnabled() && <ThemeSwitcher current={name} />}
+</Layout>

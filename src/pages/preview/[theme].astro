@@ -1,0 +1,14 @@
+---
+import Theme from "@/themes/Theme.astro";
+import { THEMES, switcherEnabled, type ThemeName } from "@/data/themes";
+
+export function getStaticPaths() {
+	// En producción no se genera ninguna ruta de previsualización.
+	if (!switcherEnabled()) return [];
+	return THEMES.map((theme) => ({ params: { theme } }));
+}
+
+const { theme } = Astro.params;
+---
+
+<Theme name={theme as ThemeName} />

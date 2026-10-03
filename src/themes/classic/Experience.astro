@@ -1,24 +1,6 @@
 ---
-import { Briefcase, Calendar } from "@lucide/astro";
-import Badge from "@/components/ui/Badge.astro";
-
-const experiences = [
-  {
-    title: "Junior Cloud Engineer",
-    company: "Crononauta S.L",
-    period: "Nov 2024 - Present",
-    location: "Remote",
-    description:
-      "Maintain and monitor cloud infrastructure on AWS with focus on high availability, automation, and incident response.",
-    achievements: [
-      "Migration of monitoring infrastructure with zero downtime",
-      "24/7 on-call for critical AWS services",
-      "Incident resolution in client Cloud environments",
-      "Automated routine maintenance tasks with Puppet and Terraform",
-    ],
-    technologies: ["AWS", "Linux", "Prometheus", "24x7 Support", "Terraform"],
-  },
-];
+import { Calendar } from "@lucide/astro";
+import { experiences } from "@/data/site";
 ---
 
 <div class="max-w-4xl mx-auto px-6 py-24">
