@@ -1,0 +1,24 @@
+---
+import type { Content } from "@/i18n";
+import Section from "./Section.astro";
+const { c } = Astro.props as { c: Content };
+const p = c.proof;
+---
+
+<Section id="proof" label={p.label} title={p.title} intro={p.intro}>
+	<article class="f-card">
+		<div class="flex flex-wrap items-baseline justify-between gap-2">
+			<div>
+				<h3 class="text-xl font-semibold text-slate-50">{p.role}</h3>
+				<p class="f-mono text-sm text-amber-400">{p.company}</p>
+			</div>
+			<p class="f-mono text-sm text-slate-300">{p.period}</p>
+		</div>
+		<ul class="f-text mt-6 grid gap-3 md:grid-cols-2">
+			{p.items.map((i) => <li class="flex gap-3"><span class="text-amber-400" aria-hidden="true">✓</span><span>{i}</span></li>)}
+		</ul>
+		<ul class="f-chips mt-6">
+			{p.stack.map((s, i) => <li class="f-chip" data-hot={i === 0 ? "" : undefined}>{s}</li>)}
+		</ul>
+	</article>
+</Section>

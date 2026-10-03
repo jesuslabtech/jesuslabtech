@@ -1,0 +1,29 @@
+---
+import type { Content } from "@/i18n";
+const { c, href } = Astro.props as { c: Content; href: string };
+const other = c.lang === "es" ? "EN" : "ES";
+const otherLang = c.lang === "es" ? "en" : "es";
+---
+
+<a
+	href={href}
+	hreflang={otherLang}
+	lang={otherLang}
+	data-lang-switch={otherLang}
+	data-astro-reload
+	aria-label={`${c.ui.langSwitch}: ${otherLang === "es" ? "Español" : "English"}`}
+	class="f-mono border border-slate-600 px-2.5 py-1 text-xs text-slate-200 hover:border-amber-400 hover:text-amber-400"
+>
+	{other}
+</a>
+
+<script>
+	// Recuerda la elección manual de idioma para la redirección de la raíz.
+	document.querySelectorAll<HTMLAnchorElement>("[data-lang-switch]").forEach((a) => {
+		a.addEventListener("click", () => {
+			try {
+				localStorage.setItem("lang", a.dataset.langSwitch ?? "");
+			} catch {}
+		});
+	});
+</script>

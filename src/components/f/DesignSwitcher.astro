@@ -1,0 +1,71 @@
+---
+import { LAYOUTS, SKINS } from "@/data/design";
+const { layout, skin, lang } = Astro.props as { layout: string; skin: string; lang: string };
+const row = "display:flex;align-items:center;gap:4px;flex-wrap:wrap;";
+const tag = "color:#94a3b8;width:4.2rem;";
+---
+
+<aside
+	aria-label="Design switcher"
+	id="design-switcher"
+	style="position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:100;max-width:calc(100vw - 16px);padding:8px 10px;background:#030712;border:1px solid #334155;font-family:'JetBrains Mono',monospace;font-size:12px;display:grid;gap:6px;"
+>
+	<div style={row}>
+		<span style={tag}>layout</span>
+		{LAYOUTS.map((l) => (
+			<a href={`/preview/${lang}/${l}/`} data-astro-reload aria-current={l === layout ? "page" : undefined} class="ds-opt">{l}</a>
+		))}
+	</div>
+	<div style={row}>
+		<span style={tag}>skin</span>
+		{SKINS.map((s) => (
+			<button type="button" data-skin-btn={s} aria-pressed={s === skin} class="ds-opt">{s}</button>
+		))}
+	</div>
+</aside>
+
+<style is:global>
+	.ds-opt {
+		padding: 6px 10px;
+		color: #cbd5e1;
+		background: transparent;
+		border: 1px solid transparent;
+		cursor: pointer;
+		font: inherit;
+		text-decoration: none;
+	}
+	.ds-opt:hover {
+		border-color: #475569;
+	}
+	.ds-opt[aria-current="page"],
+	.ds-opt[aria-pressed="true"] {
+		background: #f59e0b;
+		color: #1c1203;
+	}
+</style>
+
+<script>
+	const buttons = document.querySelectorAll<HTMLButtonElement>("[data-skin-btn]");
+	const mark = () => {
+		const cur = document.documentElement.dataset.skin;
+		buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.skinBtn === cur)));
+	};
+	buttons.forEach((b) =>
+		b.addEventListener("click", () => {
+			document.documentElement.dataset.skin = b.dataset.skinBtn;
+			try {
+				localStorage.setItem("skin", b.dataset.skinBtn ?? "");
+			} catch {}
+			mark();
+		}),
+	);
+	mark();
+	// Atajo: pulsa "s" para pasar al siguiente diseño visual.
+	document.addEventListener("keydown", (e) => {
+		const t = e.target as HTMLElement;
+		if (e.key !== "s" || e.metaKey || e.ctrlKey || e.altKey || /input|textarea|select/i.test(t.tagName)) return;
+		const list = [...buttons];
+		const i = list.findIndex((b) => b.dataset.skinBtn === document.documentElement.dataset.skin);
+		list[(i + 1) % list.length]?.click();
+	});
+</script>

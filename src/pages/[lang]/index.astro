@@ -1,0 +1,13 @@
+---
+import Landing from "@/components/f/Landing.astro";
+import { LANGS, type Lang } from "@/i18n";
+import { activeLayout, activeSkin } from "@/data/design";
+
+export function getStaticPaths() {
+	return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+---
+
+<Landing lang={lang as Lang} layout={activeLayout()} skin={activeSkin()} />

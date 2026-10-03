@@ -1,0 +1,339 @@
+/*
+ * Estilos visuales intercambiables. Los componentes de src/components/f usan
+ * solo estas clases (f-*) para todo lo que cambia entre diseños; el layout
+ * (grid, espaciados) va en utilidades de Tailwind y es común a todos.
+ * El diseño activo se elige con <html data-skin="...">.
+ */
+
+:root {
+  --amber: #fbbf24;
+  --amber-strong: #f59e0b;
+  --ink: #f1f5f9;
+  --ink-soft: #cbd5e1;
+  --ink-mute: #94a3b8;
+  --line: #334155;
+  --mono: "JetBrains Mono", monospace;
+}
+
+/* ---------- Base común ---------- */
+.f-sec {
+  counter-increment: sec;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: var(--sk-sec-y, 5rem) 1.5rem;
+  scroll-margin-top: 4rem;
+}
+body {
+  counter-reset: sec;
+}
+.f-mono {
+  font-family: var(--mono);
+}
+.f-label {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.f-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  justify-content: var(--sk-head-justify, flex-start);
+}
+.f-title {
+  font-size: var(--sk-title-size, 2rem);
+  font-weight: var(--sk-title-weight, 600);
+  letter-spacing: var(--sk-title-tracking, -0.01em);
+  line-height: 1.1;
+  color: var(--ink);
+  text-align: var(--sk-align, left);
+  margin: 0 0 1rem;
+}
+.f-intro {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 40rem;
+  margin: 0 0 2.5rem;
+  text-align: var(--sk-align, left);
+  margin-inline: var(--sk-intro-margin, 0);
+}
+.f-text {
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+.f-card {
+  background: var(--sk-card-bg, transparent);
+  border: var(--sk-card-border, 0);
+  border-top: var(--sk-card-border-top, var(--sk-card-border, 0));
+  border-radius: var(--sk-card-radius, 0);
+  padding: var(--sk-card-pad, 1.5rem 0 0);
+  box-shadow: var(--sk-card-shadow, none);
+}
+.f-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sk-chip-gap, 0.5rem);
+}
+.f-chip {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  background: var(--sk-chip-bg, transparent);
+  border: var(--sk-chip-border, 0);
+  border-radius: var(--sk-chip-radius, 0);
+  padding: var(--sk-chip-pad, 0);
+}
+.f-chip[data-hot] {
+  color: var(--amber);
+}
+.f-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0 1.6rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--sk-btn-radius, 0.5rem);
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.f-btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.f-btn-primary {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #1c1203;
+  font-weight: 600;
+}
+.f-btn-primary:hover {
+  background: #fcd34d;
+  color: #1c1203;
+}
+.f-link {
+  color: var(--amber);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.f-link:hover {
+  color: #fcd34d;
+}
+.f-hero {
+  text-align: var(--sk-align, left);
+}
+.f-hero-title {
+  font-size: var(--sk-h1-size, clamp(2.5rem, 6vw, 4.5rem));
+  font-weight: 700;
+  letter-spacing: var(--sk-h1-tracking, -0.02em);
+  line-height: 1.04;
+  color: var(--ink);
+}
+.f-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  justify-content: var(--sk-head-justify, flex-start);
+}
+.f-field {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.7rem 0.9rem;
+  color: var(--ink);
+  background: #070d1a;
+  border: 1px solid var(--line);
+  border-radius: var(--sk-btn-radius, 0.5rem);
+  font: inherit;
+}
+.f-field:focus-visible,
+.f-btn:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+.f-header {
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+}
+.f-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--amber);
+}
+.f-node rect {
+  fill: #0b1220;
+  stroke: var(--line);
+  stroke-width: 1.5;
+  transition: stroke 0.2s, fill 0.2s;
+}
+.f-node text {
+  fill: var(--ink);
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.f-node:hover rect,
+.f-node:focus rect,
+.f-node[data-on] rect {
+  stroke: var(--amber);
+  fill: #111a2e;
+}
+.f-node {
+  cursor: pointer;
+  outline: none;
+}
+.f-node:focus-visible rect {
+  stroke-width: 3;
+}
+
+/* ---------- classic: el aspecto actual (cristal, píldoras, centrado) ---------- */
+[data-skin="classic"] {
+  --sk-align: center;
+  --sk-head-justify: center;
+  --sk-intro-margin: 0 auto 2.5rem;
+  --sk-title-size: clamp(1.8rem, 4vw, 2.5rem);
+  --sk-card-bg: linear-gradient(135deg, hsl(222 47% 12% / 0.7) 0%, hsl(222 47% 8% / 0.5) 100%);
+  --sk-card-border: 1px solid hsl(217 33% 20% / 0.5);
+  --sk-card-radius: 1rem;
+  --sk-card-pad: 1.75rem;
+  --sk-chip-bg: rgba(30, 41, 59, 0.6);
+  --sk-chip-border: 1px solid #334155;
+  --sk-chip-radius: 0.5rem;
+  --sk-chip-pad: 0.4rem 0.8rem;
+  --sk-btn-radius: 0.5rem;
+}
+[data-skin="classic"] .f-chip[data-hot] {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+[data-skin="classic"] .f-head::before,
+[data-skin="classic"] .f-head::after {
+  content: "";
+  width: 3rem;
+  height: 1px;
+}
+[data-skin="classic"] .f-head::before {
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.5));
+}
+[data-skin="classic"] .f-head::after {
+  background: linear-gradient(270deg, transparent, rgba(245, 158, 11, 0.5));
+}
+[data-skin="classic"] .f-left {
+  text-align: left;
+}
+
+/* ---------- terminal: sin cajas, prefijos de comando ---------- */
+[data-skin="terminal"] {
+  --sk-title-size: 1.6rem;
+  --sk-card-border-top: 1px solid #1e293b;
+  --sk-card-pad: 1.25rem 0 0;
+  --sk-chip-gap: 0.25rem 1rem;
+  --sk-btn-radius: 0;
+  --sk-h1-size: clamp(2.4rem, 5.5vw, 4rem);
+  --sk-sec-y: 4rem;
+}
+[data-skin="terminal"] body {
+  background: #030712;
+}
+[data-skin="terminal"] .f-label::before {
+  content: "$ ";
+  color: var(--ink-mute);
+}
+[data-skin="terminal"] .f-label {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 0.9rem;
+}
+[data-skin="terminal"] .f-title {
+  font-size: var(--sk-title-size);
+}
+[data-skin="terminal"] .f-chip:not(:last-child)::after {
+  content: " ·";
+  color: var(--ink-mute);
+}
+[data-skin="terminal"] .f-field {
+  background: transparent;
+  border-width: 0 0 1px;
+}
+[data-skin="terminal"] .f-header {
+  background: #030712;
+}
+
+/* ---------- editorial: tipografía grande, numeración, reglas ---------- */
+[data-skin="editorial"] {
+  --sk-title-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  --sk-title-weight: 700;
+  --sk-title-tracking: -0.03em;
+  --sk-card-border-top: 1px solid #334155;
+  --sk-card-pad: 1.5rem 0 0;
+  --sk-chip-gap: 0.25rem 0.9rem;
+  --sk-btn-radius: 0;
+  --sk-h1-size: clamp(3rem, 8vw, 6.5rem);
+  --sk-h1-tracking: -0.04em;
+  --sk-sec-y: 6rem;
+}
+[data-skin="editorial"] body {
+  background: #030712;
+}
+[data-skin="editorial"] .f-label::before {
+  content: counter(sec, decimal-leading-zero) " — ";
+}
+[data-skin="editorial"] .f-sec + .f-sec {
+  border-top: 1px solid #334155;
+}
+[data-skin="editorial"] .f-chip:not(:last-child)::after {
+  content: " /";
+  color: var(--ink-mute);
+}
+[data-skin="editorial"] .f-field {
+  background: transparent;
+  border-width: 0 0 1px;
+}
+[data-skin="editorial"] .f-header {
+  background: #030712;
+  border-bottom-color: transparent;
+}
+
+/* ---------- dashboard: paneles planos de borde fino ---------- */
+[data-skin="dashboard"] {
+  --sk-title-size: 1.6rem;
+  --sk-card-bg: #0b1220;
+  --sk-card-border: 1px solid #334155;
+  --sk-card-radius: 2px;
+  --sk-card-pad: 1.25rem;
+  --sk-chip-bg: transparent;
+  --sk-chip-border: 1px solid #334155;
+  --sk-chip-radius: 2px;
+  --sk-chip-pad: 0.2rem 0.55rem;
+  --sk-btn-radius: 2px;
+  --sk-sec-y: 3.5rem;
+}
+[data-skin="dashboard"] body {
+  background: #030712;
+}
+[data-skin="dashboard"] .f-label::before {
+  content: "▸ ";
+}
+[data-skin="dashboard"] .f-chip[data-hot] {
+  border-color: rgba(251, 191, 36, 0.5);
+}
+[data-skin="dashboard"] .f-header {
+  background: #030712;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .f-btn,
+  .f-node rect {
+    transition: none;
+  }
+}

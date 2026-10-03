@@ -1,0 +1,22 @@
+---
+import type { Content } from "@/i18n";
+import { getLatestPosts, formatDate } from "@/data/site";
+import Section from "./Section.astro";
+const { c } = Astro.props as { c: Content };
+const posts = await getLatestPosts();
+---
+
+<Section id="posts" label={c.posts.label} title={c.posts.title} intro={c.posts.note || undefined}>
+	<ul class="grid gap-6 md:grid-cols-2">
+		{posts.map((post) => (
+			<li class="f-card">
+				<time class="f-mono text-xs text-slate-400">{formatDate(post.data.date, c.lang)}</time>
+				<h3 class="mt-2 text-xl font-semibold text-slate-50">
+					<a href={`/posts/${post.slug}`} class="hover:text-amber-400">{post.data.title}</a>
+				</h3>
+				<p class="f-text mt-2 text-sm">{post.data.description}</p>
+				<p class="mt-4"><a href={`/posts/${post.slug}`} class="f-link f-mono text-sm">{c.posts.readMore} →</a></p>
+			</li>
+		))}
+	</ul>
+</Section>

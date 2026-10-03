@@ -1,0 +1,54 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getContent, LANGS, type Lang } from "@/i18n";
+import { switcherEnabled, type LayoutName, type SkinName } from "@/data/design";
+import Header from "./Header.astro";
+import HeroOffer from "./HeroOffer.astro";
+import HeroDiagram from "./HeroDiagram.astro";
+import Services from "./Services.astro";
+import Proof from "./Proof.astro";
+import Process from "./Process.astro";
+import Cases from "./Cases.astro";
+import About from "./About.astro";
+import Posts from "./Posts.astro";
+import Contact from "./Contact.astro";
+import Footer from "./Footer.astro";
+import DesignSwitcher from "./DesignSwitcher.astro";
+
+interface Props {
+	lang: Lang;
+	layout: LayoutName;
+	skin: SkinName;
+	preview?: boolean;
+}
+const { lang, layout, skin, preview = false } = Astro.props;
+const c = getContent(lang);
+const other = LANGS.find((l) => l !== lang)!;
+const href = (l: Lang) => (preview ? `/preview/${l}/${layout}/` : `/${l}/`);
+const alternates = [...LANGS.map((l) => ({ lang: l, href: `/${l}/` })), { lang: "x-default", href: "/" }];
+---
+
+<Layout
+	title={c.meta.title}
+	description={c.meta.description}
+	lang={lang}
+	skin={skin}
+	noindex={preview}
+	alternates={preview ? [] : alternates}
+>
+	<Header c={c} otherHref={href(other)} />
+	<main id="main">
+		{layout === "diagrama" ? <HeroDiagram c={c} /> : <HeroOffer c={c} />}
+		{layout === "casos" && <Cases c={c} featured />}
+		<Services c={c} />
+		<Proof c={c} />
+		<Process c={c} />
+		{layout === "servicios" && <Cases c={c} />}
+		{layout === "diagrama" && <Cases c={c} />}
+		<About c={c} />
+		<Posts c={c} />
+		<Contact c={c} />
+	</main>
+	<Footer c={c} />
+	{switcherEnabled() && <DesignSwitcher layout={layout} skin={skin} lang={lang} />}
+</Layout>

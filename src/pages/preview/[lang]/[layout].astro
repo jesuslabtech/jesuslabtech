@@ -1,0 +1,15 @@
+---
+import Landing from "@/components/f/Landing.astro";
+import { LANGS, type Lang } from "@/i18n";
+import { LAYOUTS, activeSkin, switcherEnabled, type LayoutName } from "@/data/design";
+
+export function getStaticPaths() {
+	// En producción no se genera ninguna ruta de previsualización.
+	if (!switcherEnabled()) return [];
+	return LANGS.flatMap((lang) => LAYOUTS.map((layout) => ({ params: { lang, layout } })));
+}
+
+const { lang, layout } = Astro.params;
+---
+
+<Landing lang={lang as Lang} layout={layout as LayoutName} skin={activeSkin()} preview />

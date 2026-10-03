@@ -1,0 +1,16 @@
+---
+import type { Content } from "@/i18n";
+import { profile } from "@/data/site";
+const { c } = Astro.props as { c: Content };
+---
+
+<footer class="mx-auto max-w-5xl border-t border-slate-800 px-6 py-10 pb-28 f-mono text-xs text-slate-400">
+	<div class="flex flex-wrap items-center justify-between gap-4">
+		<p>© {new Date().getFullYear()} {profile.name}. {c.footer.rights}.</p>
+		<p class="flex gap-5">
+			<a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-amber-400">LinkedIn</a>
+			<a href={profile.github} target="_blank" rel="noopener noreferrer" class="hover:text-amber-400">GitHub</a>
+			<a href={`mailto:${profile.email}`} class="hover:text-amber-400">Email</a>
+		</p>
+	</div>
+</footer>

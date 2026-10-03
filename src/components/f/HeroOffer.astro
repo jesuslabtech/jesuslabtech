@@ -1,0 +1,17 @@
+---
+import type { Content } from "@/i18n";
+const { c } = Astro.props as { c: Content };
+---
+
+<section id="top" class="f-hero mx-auto max-w-5xl px-6 pb-16 pt-20 md:pt-28">
+	<p class="f-label mb-6">{c.hero.eyebrow}</p>
+	<h1 class="f-hero-title mx-auto max-w-4xl" style="margin-inline: var(--sk-intro-margin, 0);">{c.hero.title}</h1>
+	<p class="f-text mt-6 max-w-2xl text-xl" style="margin-inline: var(--sk-intro-margin, 0);">{c.hero.lead}</p>
+	<div class="f-actions mt-10">
+		<a href="#contact" class="f-btn f-btn-primary">{c.hero.ctaPrimary}</a>
+		<a href="#services" class="f-btn">{c.hero.ctaSecondary}</a>
+	</div>
+	<ul class="f-chips f-mono mt-10 text-sm" style="justify-content: var(--sk-head-justify, flex-start);">
+		{c.hero.meta.map((m) => <li class="f-chip">{m}</li>)}
+	</ul>
+</section>

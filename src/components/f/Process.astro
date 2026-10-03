@@ -1,0 +1,17 @@
+---
+import type { Content } from "@/i18n";
+import Section from "./Section.astro";
+const { c } = Astro.props as { c: Content };
+---
+
+<Section id="process" label={c.process.label} title={c.process.title}>
+	<ol class="grid gap-6 md:grid-cols-4">
+		{c.process.steps.map((s, i) => (
+			<li class="f-card">
+				<p class="f-mono text-sm text-amber-400">{String(i + 1).padStart(2, "0")}</p>
+				<h3 class="mt-2 text-lg font-semibold text-slate-50">{s.title}</h3>
+				<p class="f-text mt-2 text-sm">{s.text}</p>
+			</li>
+		))}
+	</ol>
+</Section>

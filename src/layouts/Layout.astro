@@ -7,28 +7,43 @@ import "@fontsource/outfit/latin-700.css";
 import "@fontsource/jetbrains-mono/latin-400.css";
 import "@fontsource/jetbrains-mono/latin-500.css";
 import { ClientRouter } from "astro:transitions";
-import Analytics from '@vercel/analytics/astro'
-import SpeedInsights from '@vercel/speed-insights/astro';
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import { SKINS } from "@/data/design";
+import { switcherEnabled } from "@/data/design";
 
 interface Props {
 	title?: string;
 	description?: string;
 	noindex?: boolean;
+	lang?: string;
+	skin?: string;
+	/** Versiones del mismo contenido en otros idiomas, para hreflang. */
+	alternates?: { lang: string; href: string }[];
 }
 
-const defaultTitle = "Portfolio de Jesús Merlo - DevOps & Cloud Engineer";
+const defaultTitle = "Jesús Merlo · Cloud Engineer";
 const defaultDescription =
 	"Jesús Merlo, Cloud Engineer: infraestructura en AWS, CI/CD, observabilidad y automatización con Terraform.";
-const { title = defaultTitle, description = defaultDescription, noindex = false } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, "https://jesuslabtech.vercel.app");
+const {
+	title = defaultTitle,
+	description = defaultDescription,
+	noindex = false,
+	lang = "en",
+	skin = "classic",
+	alternates = [],
+} = Astro.props;
+const site = "https://jesuslabtech.vercel.app";
+const canonicalURL = new URL(Astro.url.pathname, site);
+const ogImage = `${site}/portfolio-mock.png`;
+const ogLocale = lang === "es" ? "es_ES" : "en_GB";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} data-skin={skin}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -36,45 +51,51 @@ const canonicalURL = new URL(Astro.url.pathname, "https://jesuslabtech.vercel.ap
 
 		<link rel="canonical" href={canonicalURL} />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={new URL(a.href, site)} />)}
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<meta
-			name="keywords"
-			content="Astro, DevOps, Cloud Engineer, Portfolio, Jesús Merlo, Desarrollo web, Infraestructura como código, CI/CD, AWS, Docker, Terraform"
-		/>
 		<meta name="author" content="Jesús Merlo" />
 		<meta name="generator" content={Astro.generator} />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content="https://jesuslabtech.vercel.app/portfolio-mock.png" />
+		<meta property="og:image" content={ogImage} />
 		<meta property="og:url" content={canonicalURL} />
-		<meta property="og:site_name" content="Portfolio de Jesús Merlo" />
+		<meta property="og:locale" content={ogLocale} />
+		<meta property="og:site_name" content="Jesús Merlo" />
 
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content="https://jesuslabtech.vercel.app/portfolio-mock.png" />
-		
+		<meta name="twitter:image" content={ogImage} />
 
-		<meta name="theme-color" content="#0f172a" />
+		<meta name="theme-color" content="#030712" />
 
+		{
+			switcherEnabled() && (
+				<script is:inline define:vars={{ skins: SKINS }}>
+					(function () {
+						function apply() {
+							try {
+								var q = new URLSearchParams(location.search).get("skin");
+								var s = q || localStorage.getItem("skin");
+								if (q) localStorage.setItem("skin", q);
+								if (s && skins.indexOf(s) > -1) document.documentElement.dataset.skin = s;
+							} catch (e) {}
+						}
+						apply();
+						document.addEventListener("astro:after-swap", apply);
+					})();
+				</script>
+			)
+		}
 
 		<ClientRouter />
 		<Analytics />
 	</head>
-	<body class="dark min-h-screen bg-background text-foreground antialiased">
-		<div class="container">
-			<slot />
-		</div>
+	<body class="min-h-screen bg-background text-foreground antialiased">
+		<slot />
 		<SpeedInsights />
 	</body>
 </html>
-
-<style>
-	.container {
-		max-width: 100%;
-		margin: 0 auto;
-	}
-</style>

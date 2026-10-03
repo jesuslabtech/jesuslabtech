@@ -1,0 +1,63 @@
+---
+import type { Content } from "@/i18n";
+import { profile } from "@/data/site";
+import Section from "./Section.astro";
+const { c } = Astro.props as { c: Content };
+const f = c.contact.form;
+---
+
+<Section id="contact" label={c.contact.label} title={c.contact.title} intro={c.contact.lead}>
+	<form
+		id="brief"
+		class="f-card grid gap-5 md:grid-cols-2"
+		data-to={profile.email}
+		data-subject={f.subject}
+		data-intro={f.bodyIntro}
+		data-l-name={f.name}
+		data-l-need={f.need}
+		data-l-situation={f.situation}
+		data-l-when={f.when}
+	>
+		<label class="grid gap-2 text-sm text-slate-300">{f.name}
+			<input name="name" class="f-field" autocomplete="name" />
+		</label>
+		<label class="grid gap-2 text-sm text-slate-300">{f.need}
+			<select name="need" class="f-field">
+				{f.needOptions.map((o) => <option value={o}>{o}</option>)}
+			</select>
+		</label>
+		<label class="grid gap-2 text-sm text-slate-300 md:col-span-2">{f.situation}
+			<textarea name="situation" rows="4" class="f-field" placeholder={f.situationPlaceholder}></textarea>
+		</label>
+		<label class="grid gap-2 text-sm text-slate-300">{f.when}
+			<select name="when" class="f-field">
+				{f.whenOptions.map((o) => <option value={o}>{o}</option>)}
+			</select>
+		</label>
+		<div class="flex flex-wrap items-end gap-3">
+			<button type="submit" class="f-btn f-btn-primary">{f.submit}</button>
+			<a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="f-btn">{c.contact.linkedin} ↗</a>
+		</div>
+	</form>
+	<p class="f-text f-mono mt-6 text-sm">{f.fallback} <a href={`mailto:${profile.email}`} class="f-link">{profile.email}</a></p>
+</Section>
+
+<script>
+	const form = document.getElementById("brief") as HTMLFormElement | null;
+	form?.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const d = form.dataset;
+		const v = (n: string) => (form.elements.namedItem(n) as HTMLInputElement).value.trim();
+		const body = [
+			d.intro,
+			"",
+			`${d.lName}: ${v("name")}`,
+			`${d.lNeed}: ${v("need")}`,
+			`${d.lWhen}: ${v("when")}`,
+			"",
+			`${d.lSituation}`,
+			v("situation"),
+		].join("\n");
+		location.href = `mailto:${d.to}?subject=${encodeURIComponent(d.subject ?? "")}&body=${encodeURIComponent(body)}`;
+	});
+</script>

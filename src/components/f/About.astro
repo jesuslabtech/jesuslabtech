@@ -1,0 +1,26 @@
+---
+import type { Content } from "@/i18n";
+import Section from "./Section.astro";
+const { c } = Astro.props as { c: Content };
+const a = c.about;
+---
+
+<Section id="about" label={a.label} title={a.title}>
+	<div class="grid gap-10 md:grid-cols-2">
+		<div>
+			<p class="f-text text-lg">{a.summary}</p>
+			<p class="f-mono mt-6 text-sm text-slate-400">“{a.quote}”</p>
+			<p class="f-mono mt-6 text-sm text-amber-400">{a.billing}</p>
+		</div>
+		<div class="space-y-8">
+			<div>
+				<h3 class="f-mono text-xs uppercase tracking-widest text-slate-400">{a.stackLabel}</h3>
+				<ul class="f-chips mt-3">{a.stack.map((s, i) => <li class="f-chip" data-hot={i < 2 ? "" : undefined}>{s}</li>)}</ul>
+			</div>
+			<div>
+				<h3 class="f-mono text-xs uppercase tracking-widest text-slate-400">{a.focusLabel}</h3>
+				<ul class="f-text f-mono mt-3 space-y-1.5 text-sm">{a.focus.map((f) => <li><span class="text-amber-400">→ </span>{f}</li>)}</ul>
+			</div>
+		</div>
+	</div>
+</Section>

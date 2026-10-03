@@ -1,0 +1,40 @@
+---
+import type { Content } from "@/i18n";
+import { projectMeta } from "@/data/site";
+import Section from "./Section.astro";
+const { c, featured = false } = Astro.props as { c: Content; featured?: boolean };
+const k = c.cases;
+---
+
+<Section id="work" label={k.label} title={k.title} intro={k.intro}>
+	<div class="space-y-8">
+		{k.items.map((item, i) => {
+			const meta = projectMeta[i];
+			return (
+				<article class={`f-card grid gap-8 ${featured ? "lg:grid-cols-2" : "md:grid-cols-5"}`}>
+					<div class={featured ? "" : "md:col-span-2"}>
+						<img src={meta.image.src} width={meta.image.width} height={meta.image.height} alt={item.title} loading="lazy" class="aspect-[16/10] w-full object-cover opacity-90" />
+					</div>
+					<div class={featured ? "" : "md:col-span-3"}>
+						<p class="f-mono text-xs uppercase tracking-widest text-slate-400">{k.badge}</p>
+						<h3 class="mt-2 text-2xl font-semibold text-slate-50">{item.title}</h3>
+						<dl class="mt-4 space-y-3">
+							<div>
+								<dt class="f-mono text-xs uppercase tracking-widest text-amber-400">{k.problem}</dt>
+								<dd class="f-text mt-1">{item.problem}</dd>
+							</div>
+							<div>
+								<dt class="f-mono text-xs uppercase tracking-widest text-amber-400">{k.built}</dt>
+								<dd class="f-text mt-1">{item.built}</dd>
+							</div>
+						</dl>
+						<ul class="f-chips mt-5">
+							{item.tags.map((t, j) => <li class="f-chip" data-hot={j === 0 ? "" : undefined}>{t}</li>)}
+						</ul>
+						<p class="mt-5"><a href={meta.github} target="_blank" rel="noopener noreferrer" class="f-link f-mono text-sm">{k.code} ↗</a></p>
+					</div>
+				</article>
+			);
+		})}
+	</div>
+</Section>

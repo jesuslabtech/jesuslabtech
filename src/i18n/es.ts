@@ -1,0 +1,158 @@
+import type { Content } from "./types";
+
+export const es: Content = {
+  lang: "es",
+  meta: {
+    title: "Jesús Merlo · Cloud Engineer freelance (AWS, Terraform, CI/CD)",
+    description:
+      "Cloud engineer freelance para startups y pymes: infraestructura en AWS, Terraform, monitorización y CI/CD. Facturación por horas.",
+  },
+  nav: [
+    { label: "servicios", href: "#services" },
+    { label: "hitos", href: "#proof" },
+    { label: "proyectos", href: "#work" },
+    { label: "proceso", href: "#process" },
+    { label: "contacto", href: "#contact" },
+  ],
+  availability: "Disponible para nuevos proyectos",
+  hero: {
+    eyebrow: "Cloud engineer freelance · AWS",
+    title: "Infraestructura AWS que no te despierta a las 3 de la mañana.",
+    lead: "Ayudo a startups y pymes a desplegar, monitorizar y automatizar su infraestructura en AWS con Terraform, CI/CD y observabilidad.",
+    meta: ["Facturación por horas", "Trabajo en remoto", "Español e inglés"],
+    ctaPrimary: "Cuéntame tu caso",
+    ctaSecondary: "Ver servicios",
+  },
+  diagram: {
+    hint: "Pasa el ratón o enfoca un nodo para ver qué hago en cada pieza.",
+    nodes: [
+      { id: "terraform", label: "Terraform", desc: "Infraestructura como código: entornos reproducibles, versionados y revisables." },
+      { id: "aws", label: "AWS", desc: "Diseño y operación de la nube: redes, cómputo, permisos, disponibilidad y costes." },
+      { id: "prometheus", label: "Prometheus", desc: "Métricas y alertas para enterarte de los problemas antes que tus usuarios." },
+      { id: "grafana", label: "Grafana", desc: "Dashboards claros para entender el estado del sistema de un vistazo." },
+      { id: "actions", label: "GitHub Actions", desc: "Pipelines de build, test y despliegue automatizados." },
+      { id: "argocd", label: "ArgoCD", desc: "GitOps: lo que está en Git es lo que está desplegado." },
+      { id: "k8s", label: "Kubernetes", desc: "Despliegue y operación de aplicaciones en contenedores." },
+    ],
+  },
+  services: {
+    label: "Servicios",
+    title: "En qué puedo ayudarte",
+    intro: "Cuatro áreas donde puedo aportar desde la primera semana. Trabajo por horas, así que puedes empezar por una sola.",
+    items: [
+      {
+        title: "Auditoría y puesta a punto de AWS",
+        description: "Reviso tu cuenta y tu arquitectura actual y te dejo una lista priorizada de mejoras.",
+        bullets: ["Disponibilidad y puntos únicos de fallo", "Permisos IAM y seguridad básica", "Costes y recursos sin usar"],
+      },
+      {
+        title: "Infraestructura como código con Terraform",
+        description: "Paso tu infraestructura manual a código versionado y reproducible.",
+        bullets: ["Entornos separados (dev, staging, prod)", "Módulos y estado remoto", "Cambios revisados antes de aplicarse"],
+      },
+      {
+        title: "Monitorización y alertas",
+        description: "Prometheus y Grafana para saber qué pasa antes de que lo note el usuario.",
+        bullets: ["Métricas y dashboards útiles", "Alertas que no generan ruido", "Migración de monitorización sin downtime"],
+      },
+      {
+        title: "CI/CD y despliegues automáticos",
+        description: "Pipelines con GitHub Actions y GitOps con ArgoCD sobre Kubernetes.",
+        bullets: ["Build, test y despliegue automatizados", "Despliegues repetibles y reversibles", "Escaneo de seguridad en el pipeline"],
+      },
+    ],
+  },
+  proof: {
+    label: "Hitos",
+    title: "Experiencia operando AWS en producción",
+    intro: "Todavía no tengo clientes freelance; sí experiencia real manteniendo infraestructura de clientes en una empresa de cloud.",
+    role: "Junior Cloud Engineer",
+    company: "Crononauta S.L",
+    period: "Nov 2024 – actualidad",
+    items: [
+      "Migración de la infraestructura de monitorización sin downtime",
+      "Guardias 24/7 en servicios críticos de AWS",
+      "Resolución de incidencias en entornos cloud de clientes",
+      "Automatización de mantenimiento con Puppet y Terraform",
+    ],
+    stack: ["AWS", "Linux", "Prometheus", "Terraform", "Puppet"],
+  },
+  cases: {
+    label: "Proyectos",
+    title: "Proyectos propios",
+    intro: "Laboratorios que he montado de principio a fin. Todo el código es público.",
+    badge: "Proyecto propio",
+    problem: "El problema",
+    built: "Lo que construí",
+    code: "Ver código",
+    items: [
+      {
+        title: "Monitoring AWS Stack",
+        problem: "Saber qué está pasando en la infraestructura antes de que lo note el usuario.",
+        built: "Plataforma de observabilidad con Prometheus y Grafana desplegada en AWS con Terraform y Ansible, con auto-scaling y alta disponibilidad.",
+        tags: ["AWS", "Prometheus", "Terraform", "Grafana", "Ansible"],
+      },
+      {
+        title: "DevSecOps CI/CD Pipeline",
+        problem: "Despliegues manuales, lentos y difíciles de repetir.",
+        built: "Flujo GitOps con ArgoCD, Kubernetes y GitHub Actions para desplegar de forma automática.",
+        tags: ["GitHub Actions", "Kubernetes", "ArgoCD"],
+      },
+    ],
+  },
+  process: {
+    label: "Proceso",
+    title: "Cómo trabajamos juntos",
+    steps: [
+      { title: "Llamada inicial", text: "Me cuentas tu situación y qué te preocupa. Sin compromiso." },
+      { title: "Diagnóstico", text: "Reviso lo que tienes y acordamos qué hacer primero." },
+      { title: "Implementación", text: "Trabajo por horas, con cambios pequeños y revisables." },
+      { title: "Entrega", text: "Documentación y traspaso para que no dependas de mí." },
+    ],
+  },
+  about: {
+    label: "Sobre mí",
+    title: "Quién soy",
+    summary:
+      "Soy Cloud Engineer y me apasiona construir infraestructura escalable y resiliente. Vengo de operar servicios críticos de AWS en producción, con guardias 24/7. Quiero ayudar a startups y pymes a tener una infraestructura fiable sin montar un equipo de plataforma.",
+    quote: "La curiosidad es el apetito por el conocimiento.",
+    stackLabel: "Stack",
+    stack: ["Linux", "AWS", "Terraform", "Docker", "Prometheus"],
+    focusLabel: "En lo que me estoy formando",
+    focus: ["Infraestructura y automatización en AWS", "Observabilidad y monitorización", "Pipelines y principios DevSecOps"],
+    billing: "Facturación por horas · Trabajo en remoto",
+  },
+  posts: {
+    label: "Blog",
+    title: "Lo que escribo",
+    readMore: "Leer",
+    note: "Los artículos están en inglés.",
+  },
+  contact: {
+    label: "Contacto",
+    title: "Cuéntame tu caso",
+    lead: "Responde cuatro preguntas y se abrirá tu correo con el mensaje listo. También puedes escribirme por LinkedIn.",
+    form: {
+      name: "Tu nombre",
+      need: "¿Qué necesitas?",
+      needOptions: [
+        "Auditoría y puesta a punto de AWS",
+        "Infraestructura como código con Terraform",
+        "Monitorización y alertas",
+        "CI/CD y despliegues automáticos",
+        "No lo tengo claro",
+      ],
+      situation: "¿Cómo es tu situación actual?",
+      situationPlaceholder: "Por ejemplo: tenemos todo en AWS, desplegamos a mano y no tenemos alertas.",
+      when: "¿Para cuándo?",
+      whenOptions: ["Lo antes posible", "En 1–2 meses", "Sin prisa"],
+      submit: "Abrir mi correo",
+      fallback: "O escríbeme directamente a",
+      subject: "Proyecto cloud",
+      bodyIntro: "Hola Jesús, te escribo desde tu portfolio.",
+    },
+    linkedin: "Escribir por LinkedIn",
+  },
+  footer: { rights: "Todos los derechos reservados" },
+  ui: { skip: "Saltar al contenido", langName: "Español", langSwitch: "Cambiar idioma" },
+};

@@ -17,7 +17,7 @@ const { Content } = await post.render();
 
 <Layout title={`${post.data.title} | Jesús Merlo`} description={post.data.description}>
   <div class="max-w-3xl mx-auto py-8 px-4">
-    <a href="/#posts" class="inline-block text-amber-500 hover:underline transition-colors">
+    <a href={`/${post.data.lang}/#posts`} class="inline-block text-amber-500 hover:underline transition-colors">
       <ArrowLeftIcon class="inline-block mr-2" />
       Back
     </a>

@@ -1,0 +1,19 @@
+---
+import type { Content } from "@/i18n";
+import Section from "./Section.astro";
+const { c } = Astro.props as { c: Content };
+---
+
+<Section id="services" label={c.services.label} title={c.services.title} intro={c.services.intro}>
+	<div class="grid gap-6 md:grid-cols-2">
+		{c.services.items.map((s) => (
+			<article class="f-card">
+				<h3 class="text-xl font-semibold text-slate-50">{s.title}</h3>
+				<p class="f-text mt-2">{s.description}</p>
+				<ul class="f-text f-mono mt-4 space-y-1.5 text-sm">
+					{s.bullets.map((b) => <li><span class="text-amber-400">→ </span>{b}</li>)}
+				</ul>
+			</article>
+		))}
+	</div>
+</Section>

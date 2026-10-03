@@ -53,9 +53,12 @@ If you find something you'd like to discuss, feel free to open an issue or send 
 
 Unless otherwise noted, the content of this repository is licensed under the MIT license.
 
-## Themes
+## Design system (layouts, skins, languages)
 
-The portfolio ships with interchangeable designs in `src/themes/` (`classic`, `terminal`, `editorial`, `dashboard`, `showcase`). All of them render the same content from `src/data/site.ts`.
+The site is a freelance landing page in Spanish and English. Content lives in `src/i18n/{es,en}.ts` (same shape, typed in `types.ts`); non-translatable data in `src/data/site.ts`.
 
-- Pick the design for a build: `THEME=terminal pnpm build` (or `THEME=terminal pnpm dev`). Default: `classic`.
-- Outside production (`VERCEL_ENV !== "production"`) every theme is also served at `/preview/<theme>` with a floating switcher. These routes are `noindex` and are not generated in production.
+- **Languages:** `/es/` and `/en/`. The root `/` redirects client-side: the language chosen with the ES/EN toggle, else the browser language, else Spanish. Each page has `hreflang` alternates.
+- **Layouts** (which sections and in what order): `servicios`, `casos`, `diagrama` (`src/components/f/Landing.astro`).
+- **Skins** (visual style, CSS only in `src/styles/skins.css`): `classic`, `terminal`, `editorial`, `dashboard`.
+- **Production build:** `LAYOUT=casos SKIN=terminal pnpm build` (defaults: `servicios` + `classic`).
+- **Preview / comparison** (any env except Vercel production, including `pnpm dev`): `/preview/<lang>/<layout>/` with a floating switcher. Skins change instantly without reloading (the choice is remembered; press `s` to cycle them, or use `?skin=terminal`). These routes are `noindex` and are not generated in production.

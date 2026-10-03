@@ -1,6 +1,39 @@
 ---
-import Theme from "@/themes/Theme.astro";
-import { activeTheme } from "@/data/themes";
+import { DEFAULT_LANG, LANGS } from "@/i18n";
+const site = "https://jesuslabtech.vercel.app";
 ---
 
-<Theme name={activeTheme()} />
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Jesús Merlo · Cloud Engineer</title>
+		<meta name="theme-color" content="#030712" />
+		<link rel="canonical" href={`${site}/${DEFAULT_LANG}/`} />
+		{LANGS.map((l) => <link rel="alternate" hreflang={l} href={`${site}/${l}/`} />)}
+		<link rel="alternate" hreflang="x-default" href={`${site}/`} />
+		<noscript><meta http-equiv="refresh" content={`0; url=/${DEFAULT_LANG}/`} /></noscript>
+		<script is:inline define:vars={{ langs: LANGS, fallback: DEFAULT_LANG }}>
+			// 1) idioma elegido a mano, 2) idioma del navegador, 3) español por defecto.
+			(function () {
+				var target = fallback;
+				try {
+					var saved = localStorage.getItem("lang");
+					if (saved && langs.indexOf(saved) > -1) target = saved;
+					else {
+						var prefs = navigator.languages || [navigator.language];
+						for (var i = 0; i < prefs.length; i++) {
+							var code = String(prefs[i]).slice(0, 2).toLowerCase();
+							if (langs.indexOf(code) > -1) { target = code; break; }
+						}
+					}
+				} catch (e) {}
+				location.replace("/" + target + "/" + location.hash);
+			})();
+		</script>
+	</head>
+	<body style="background:#030712;color:#cbd5e1;font-family:sans-serif;padding:2rem">
+		<p><a href="/es/" style="color:#fbbf24">Español</a> · <a href="/en/" style="color:#fbbf24">English</a></p>
+	</body>
+</html>
