@@ -1,3 +1,135 @@
 ---
+import { profile, nav, about, experiences, projects, getLatestPosts, formatDate } from "@/data/site";
+const posts = await getLatestPosts();
+const mono = "font-family: 'JetBrains Mono', monospace;";
+const label = "text-xs uppercase tracking-[0.25em] text-amber-400";
 ---
-<p>wip</p>
+
+<div class="mx-auto max-w-6xl px-6 md:px-10">
+	<header class="flex flex-wrap items-baseline justify-between gap-4 py-8">
+		<a href="#top" class="text-lg font-semibold tracking-tight text-slate-50">{profile.name}</a>
+		<nav aria-label="Principal" class="flex flex-wrap gap-x-7 gap-y-1 text-sm text-slate-300">
+			{nav.map((item) => <a href={item.href} class="hover:text-amber-400">{item.label}</a>)}
+		</nav>
+	</header>
+
+	<main id="top">
+		<section class="pt-16 pb-24 md:pt-28 md:pb-36">
+			<p class={label} style={mono}>{profile.role}</p>
+			<h1 class="mt-8 text-[clamp(3.5rem,13vw,10rem)] font-bold leading-[0.9] tracking-tighter text-slate-50">
+				Jesús<br /><span class="text-amber-400">Merlo</span>
+			</h1>
+			<div class="mt-14 flex flex-col gap-8 md:ml-auto md:max-w-md">
+				<p class="text-xl leading-relaxed text-slate-300">{profile.tagline}</p>
+				<p class="text-sm text-slate-400" style={mono}>— {profile.quote}</p>
+				<p class="flex gap-8 text-sm" style={mono}>
+					<a href="#contact" class="text-amber-400 underline underline-offset-4 hover:text-amber-300">Get in touch</a>
+					<a href="#work" class="text-slate-300 underline underline-offset-4 hover:text-amber-400">View work</a>
+				</p>
+			</div>
+		</section>
+
+		<section id="about" class="scroll-mt-8 grid gap-6 border-t border-slate-700 py-16 md:grid-cols-12 md:gap-10 md:py-24">
+			<h2 class={`${label} md:col-span-3`} style={mono}>01 — About</h2>
+			<div class="md:col-span-9">
+				<p class="text-3xl font-medium leading-snug tracking-tight text-slate-50 md:text-4xl">{about.summary}</p>
+				<div class="mt-12 grid gap-10 md:grid-cols-2">
+					<div>
+						<h3 class="text-xs uppercase tracking-[0.2em] text-slate-400" style={mono}>Stack</h3>
+						<p class="mt-3 text-lg text-slate-200">{about.stack.join(", ")}</p>
+					</div>
+					<div>
+						<h3 class="text-xs uppercase tracking-[0.2em] text-slate-400" style={mono}>Focus</h3>
+						<ul class="mt-3 space-y-1 text-lg text-slate-200">
+							{about.focus.map((f) => <li>{f}</li>)}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="experience" class="scroll-mt-8 grid gap-6 border-t border-slate-700 py-16 md:grid-cols-12 md:gap-10 md:py-24">
+			<h2 class={`${label} md:col-span-3`} style={mono}>02 — Experience</h2>
+			<div class="space-y-16 md:col-span-9">
+				{experiences.map((exp) => (
+					<article>
+						<p class="text-sm text-slate-400" style={mono}>{exp.period}</p>
+						<h3 class="mt-2 text-4xl font-semibold tracking-tight text-slate-50 md:text-5xl">{exp.title}</h3>
+						<p class="mt-2 text-lg text-amber-400">{exp.company} <span class="text-slate-400">· {exp.location}</span></p>
+						<p class="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300">{exp.description}</p>
+						<ul class="mt-8 max-w-2xl divide-y divide-slate-800 border-y border-slate-800">
+							{exp.achievements.map((a) => <li class="py-3 text-slate-200">{a}</li>)}
+						</ul>
+						<p class="mt-6 text-sm text-slate-400" style={mono}>{exp.technologies.join(" / ")}</p>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section id="work" class="scroll-mt-8 border-t border-slate-700 py-16 md:py-24">
+			<h2 class={label} style={mono}>03 — Selected work</h2>
+			<div class="mt-12 space-y-24">
+				{projects.map((p, i) => (
+					<article class="grid items-end gap-8 md:grid-cols-12 md:gap-10">
+						<div class={`md:col-span-7 ${i % 2 ? "md:order-2" : ""}`}>
+							{p.imgUrl && (
+								<img src={p.imgUrl} width={p.imgWidth} height={p.imgHeight} alt={p.title} loading="lazy" class="aspect-[16/10] w-full object-cover opacity-90" />
+							)}
+						</div>
+						<div class="md:col-span-5">
+							<p class="text-sm text-slate-400" style={mono}>{String(i + 1).padStart(2, "0")}</p>
+							<h3 class="mt-3 text-4xl font-semibold leading-tight tracking-tight text-slate-50">{p.title}</h3>
+							<p class="mt-5 text-lg leading-relaxed text-slate-300">{p.description}</p>
+							<p class="mt-5 text-sm text-slate-400" style={mono}>{p.tags.join(" / ")}</p>
+							<p class="mt-6 flex gap-6 text-sm" style={mono}>
+								<a href={p.links.github} target="_blank" rel="noopener noreferrer" class="text-amber-400 underline underline-offset-4 hover:text-amber-300">Code ↗</a>
+								{p.links.demo && <a href={p.links.demo} target="_blank" rel="noopener noreferrer" class="text-amber-400 underline underline-offset-4 hover:text-amber-300">Demo ↗</a>}
+							</p>
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section id="posts" class="scroll-mt-8 grid gap-6 border-t border-slate-700 py-16 md:grid-cols-12 md:gap-10 md:py-24">
+			<h2 class={`${label} md:col-span-3`} style={mono}>04 — Posts</h2>
+			<ul class="divide-y divide-slate-800 border-y border-slate-800 md:col-span-9">
+				{posts.map((post) => (
+					<li>
+						<a href={`/posts/${post.slug}`} class="group flex flex-col gap-2 py-6 md:flex-row md:items-baseline md:justify-between md:gap-10">
+							<span class="text-2xl font-medium tracking-tight text-slate-50 group-hover:text-amber-400 md:text-3xl">{post.data.title}</span>
+							<time class="shrink-0 text-sm text-slate-400" style={mono}>{formatDate(post.data.date)}</time>
+						</a>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<section id="contact" class="scroll-mt-8 border-t border-slate-700 py-20 md:py-32">
+			<h2 class={label} style={mono}>05 — Contact</h2>
+			<p class="mt-10 text-[clamp(2.5rem,8vw,6.5rem)] font-bold leading-[0.95] tracking-tighter text-slate-50">Let's work<br />together.</p>
+			<p class="mt-8 max-w-lg text-lg text-slate-300">I'm currently available for freelance work and full-time opportunities.</p>
+			<p class="mt-10 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+				<a href={`mailto:${profile.email}`} class="text-xl text-amber-400 underline underline-offset-8 hover:text-amber-300 md:text-3xl">{profile.email}</a>
+				<a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-amber-400" style={mono}>LinkedIn ↗</a>
+				<a href={profile.github} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-amber-400" style={mono}>GitHub ↗</a>
+			</p>
+		</section>
+	</main>
+
+	<footer class="flex flex-wrap justify-between gap-2 border-t border-slate-700 py-8 pb-24 text-xs text-slate-400" style={mono}>
+		<span>© {new Date().getFullYear()} {profile.name}</span>
+		<span>Available for work</span>
+	</footer>
+</div>
+
+<style>
+	html {
+		scroll-behavior: smooth;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+</style>

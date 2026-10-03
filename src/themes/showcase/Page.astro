@@ -1,3 +1,117 @@
 ---
+import { profile, nav, about, experiences, projects, getLatestPosts, formatDate } from "@/data/site";
+const posts = await getLatestPosts();
+const mono = "font-family: 'JetBrains Mono', monospace;";
+const label = "text-xs uppercase tracking-[0.25em] text-amber-400";
 ---
-<p>wip</p>
+
+<div class="mx-auto max-w-6xl px-6 md:px-10">
+	<header class="flex flex-wrap items-baseline justify-between gap-4 py-6">
+		<a href="#top" class="text-sm text-slate-50" style={mono}>{profile.name} <span class="text-slate-400">/ {profile.role}</span></a>
+		<nav aria-label="Principal" class="flex flex-wrap gap-x-6 gap-y-1 text-sm text-slate-300">
+			{nav.map((item) => <a href={item.href} class="hover:text-amber-400">{item.label}</a>)}
+		</nav>
+	</header>
+
+	<main id="top">
+		<section id="work" class="scroll-mt-4 flex min-h-[calc(100svh-4.5rem)] flex-col justify-between pb-10 pt-10 md:pt-16">
+			<div class="max-w-2xl">
+				<h1 class="text-2xl font-medium leading-snug text-slate-200 md:text-3xl">
+					{profile.name} — {profile.tagline}
+				</h1>
+			</div>
+
+			<div class="mt-16">
+				<h2 class={label} style={mono}>Selected work</h2>
+				<ul class="mt-6 border-t border-slate-700">
+					{projects.map((p, i) => (
+						<li class="group relative border-b border-slate-700">
+							<a href={p.links.github} target="_blank" rel="noopener noreferrer" class="flex flex-col gap-3 py-8 md:flex-row md:items-baseline md:justify-between md:gap-10">
+								<span class="flex items-baseline gap-6">
+									<span class="text-sm text-slate-400" style={mono}>{String(i + 1).padStart(2, "0")}</span>
+									<span class="text-4xl font-semibold tracking-tight text-slate-50 transition-colors group-hover:text-amber-400 group-focus-within:text-amber-400 md:text-6xl">{p.title}</span>
+								</span>
+								<span class="text-sm text-slate-400 md:text-right" style={mono}>{p.tags.slice(0, 3).join(" · ")} ↗</span>
+							</a>
+							<p class="max-w-xl pb-6 text-slate-300 md:pl-14">{p.description}</p>
+							{p.imgUrl && (
+								<>
+									<img src={p.imgUrl} width={p.imgWidth} height={p.imgHeight} alt={p.title} loading="lazy" class="mb-8 aspect-[16/9] w-full object-cover lg:hidden" />
+									<img
+										src={p.imgUrl}
+										alt=""
+										aria-hidden="true"
+										loading="lazy"
+										class="pointer-events-none absolute right-24 top-1/2 z-10 hidden w-72 -translate-y-1/2 rotate-2 border border-slate-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 lg:block"
+									/>
+								</>
+							)}
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+
+		<section id="about" class="scroll-mt-8 grid gap-10 border-t border-slate-700 py-20 md:grid-cols-12">
+			<h2 class={`${label} md:col-span-3`} style={mono}>About</h2>
+			<div class="md:col-span-9">
+				<p class="text-2xl leading-snug text-slate-50 md:text-3xl">{about.summary}</p>
+				<p class="mt-8 text-sm text-slate-400" style={mono}>{about.stack.join(" · ")}</p>
+				<ul class="mt-6 space-y-1 text-slate-300">{about.focus.map((f) => <li>{f}</li>)}</ul>
+			</div>
+		</section>
+
+		<section id="experience" class="scroll-mt-8 grid gap-10 border-t border-slate-700 py-20 md:grid-cols-12">
+			<h2 class={`${label} md:col-span-3`} style={mono}>Experience</h2>
+			<div class="space-y-12 md:col-span-9">
+				{experiences.map((exp) => (
+					<article>
+						<p class="text-sm text-slate-400" style={mono}>{exp.period}</p>
+						<h3 class="mt-1 text-2xl font-semibold text-slate-50">{exp.title} <span class="text-amber-400">@ {exp.company}</span></h3>
+						<p class="mt-4 max-w-2xl text-slate-300 leading-relaxed">{exp.description}</p>
+						<ul class="mt-4 max-w-2xl space-y-1 text-sm text-slate-300" style={mono}>
+							{exp.achievements.map((a) => <li><span class="text-amber-400">→ </span>{a}</li>)}
+						</ul>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section id="posts" class="scroll-mt-8 grid gap-10 border-t border-slate-700 py-20 md:grid-cols-12">
+			<h2 class={`${label} md:col-span-3`} style={mono}>Posts</h2>
+			<ul class="space-y-6 md:col-span-9">
+				{posts.map((post) => (
+					<li>
+						<a href={`/posts/${post.slug}`} class="group block">
+							<time class="text-xs text-slate-400" style={mono}>{formatDate(post.data.date)}</time>
+							<span class="mt-1 block text-2xl font-medium text-slate-50 group-hover:text-amber-400">{post.data.title}</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<section id="contact" class="scroll-mt-8 border-t border-slate-700 py-24">
+			<a href={`mailto:${profile.email}`} class="text-[clamp(2rem,7vw,5.5rem)] font-bold leading-none tracking-tighter text-slate-50 hover:text-amber-400">Let's work together →</a>
+			<p class="mt-8 max-w-lg text-slate-300">I'm currently available for freelance work and full-time opportunities.</p>
+			<p class="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-sm text-slate-300" style={mono}>
+				<a href={`mailto:${profile.email}`} class="text-amber-400 hover:text-amber-300">{profile.email}</a>
+				<a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-amber-400">LinkedIn ↗</a>
+				<a href={profile.github} target="_blank" rel="noopener noreferrer" class="hover:text-amber-400">GitHub ↗</a>
+			</p>
+		</section>
+	</main>
+
+	<footer class="border-t border-slate-700 py-8 pb-24 text-xs text-slate-400" style={mono}>© {new Date().getFullYear()} {profile.name}</footer>
+</div>
+
+<style>
+	html {
+		scroll-behavior: smooth;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+</style>

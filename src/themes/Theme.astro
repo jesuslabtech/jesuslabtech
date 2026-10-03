@@ -22,7 +22,7 @@ const pages = {
 const Page = pages[name];
 ---
 
-<Layout>
+<Layout noindex={Astro.url.pathname.startsWith('/preview/')}>
 	<Page />
 	{switcherEnabled() && <ThemeSwitcher current={name} />}
 </Layout>

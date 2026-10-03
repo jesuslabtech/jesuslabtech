@@ -52,3 +52,10 @@ If you find something you'd like to discuss, feel free to open an issue or send 
 ### 📜 License
 
 Unless otherwise noted, the content of this repository is licensed under the MIT license.
+
+## Themes
+
+The portfolio ships with interchangeable designs in `src/themes/` (`classic`, `terminal`, `editorial`, `dashboard`, `showcase`). All of them render the same content from `src/data/site.ts`.
+
+- Pick the design for a build: `THEME=terminal pnpm build` (or `THEME=terminal pnpm dev`). Default: `classic`.
+- Outside production (`VERCEL_ENV !== "production"`) every theme is also served at `/preview/<theme>` with a floating switcher. These routes are `noindex` and are not generated in production.

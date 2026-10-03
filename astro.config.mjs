@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jesuslabtech.vercel.app',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/preview/') })],
   vite: {
     plugins: [tailwindcss()]
   },
